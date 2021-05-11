@@ -14,11 +14,11 @@
         <EntityTypeShape EntityType="CT25Team19Model.DonHang" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team19Model.GioHang" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team19Model.HinhThucThanhToan" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team19Model.KhachHang" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team19Model.KhachHang" Width="1.5" PointX="1.25" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team19Model.LoaiSanPham" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CT25Team19Model.SanPham" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team19Model.TrangThaiDonHang" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CT25Team19Model.ChiTietThanhToan" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team19Model.TrangThaiDonHang" Width="1.5" PointX="0.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CT25Team19Model.ChiTietThanhToan" Width="1.5" PointX="5.875" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="CT25Team19Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team19Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="CT25Team19Model.FK_ChiTietDonHang_DonHang" ManuallyRouted="false" />
