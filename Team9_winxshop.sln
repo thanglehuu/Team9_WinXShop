@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Team9_winxshop", "Team9_winxshop\Team9_winxshop.csproj", "{24232341-E740-4C80-AEDA-FD1F1B525FCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Team9_winxshop.Tests", "Team9_winxshop.Tests\Team9_winxshop.Tests.csproj", "{3C21A30C-2286-4EC2-A176-26FC53B5A84F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24232341-E740-4C80-AEDA-FD1F1B525FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24232341-E740-4C80-AEDA-FD1F1B525FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24232341-E740-4C80-AEDA-FD1F1B525FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24232341-E740-4C80-AEDA-FD1F1B525FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C21A30C-2286-4EC2-A176-26FC53B5A84F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C21A30C-2286-4EC2-A176-26FC53B5A84F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C21A30C-2286-4EC2-A176-26FC53B5A84F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C21A30C-2286-4EC2-A176-26FC53B5A84F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04BD95AC-6560-4E34-8B9A-E0ECEAA6856D}
+	EndGlobalSection
+EndGlobal
