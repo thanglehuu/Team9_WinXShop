@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Team9_winxshop.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Danh sách sản phẩm</h2>
+
+<p>
+    <a href="@Url.Action("Create")">Thêm sản phẩm</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Size
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Đơn giá
+        </th>
+        <th>
+            Màu
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Loại sản phẩm
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.TenSP
+        </td>
+        <td>
+            @item.Size
+        </td>
+        <td>
+            @item.SoLuong
+        </td>
+        <td>
+            @item.DonGia
+        </td>
+        <td>
+            @item.Mau
+        </td>
+        <td>
+            @item.HinhAnh
+        </td>
+        <td>
+            @item.LoaiSanPham.TenLoaiSP
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { id = item.MaSP })">Edit</a> |
+            <a href="@Url.Action("Details", new { id = item.MaSP })">Details</a> |
+            <a href="@Url.Action("Delete", new { id = item.MaSP })">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>
