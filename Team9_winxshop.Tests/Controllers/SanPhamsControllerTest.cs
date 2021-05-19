@@ -40,5 +40,32 @@ namespace Team9_winxshop.Tests.Controllers
             var db = new CT25Team19Entities();
             Assert.AreEqual(db.SanPhams.Count(), model.Count);
         }
+
+        [TestMethod]
+        public void TestCreateG()
+        {
+            var controller = new SanPhamsController();
+
+            var result = controller.Create() as ViewResult;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void TestCreateP()
+        {
+            var rand = new Random();
+            var product = new SanPham
+            {
+                TenSP = rand.NextDouble().ToString(),
+                SoLuong = -rand.Next(),
+                DonGia = -rand.Next()
+            };
+
+            var controller = new SanPhamsController();
+            var result0 = controller.Create(product, null) as ViewResult;
+
+            Assert.IsNotNull(result0);
+            Assert.AreEqual("Đơn giá phải lớn hơn 0", controller.ModelState["DonGia"].Errors[0].ErrorMessage);
+        }
     }
 }
