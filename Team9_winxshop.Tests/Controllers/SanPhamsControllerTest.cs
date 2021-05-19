@@ -25,5 +25,20 @@ namespace Team9_winxshop.Tests.Controllers
             var db = new CT25Team19Entities();
             Assert.AreEqual(db.SanPhams.Count(), model.Count);
         }
+
+        [TestMethod]
+        public void TestIndex2()
+        {
+            var controller = new SanPhamsController();
+
+            var result = controller.Index2() as ViewResult;
+            Assert.IsNotNull(result);
+
+            var model = result.Model as List<SanPham>;
+            Assert.IsNotNull(model);
+
+            var db = new CT25Team19Entities();
+            Assert.AreEqual(db.SanPhams.Count(), model.Count);
+        }
     }
 }

@@ -10,6 +10,7 @@ using Team9_winxshop.Models;
 
 namespace Team9_winxshop.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class SanPhamsController : Controller
     {
         private CT25Team19Entities db = new CT25Team19Entities();
@@ -17,8 +18,16 @@ namespace Team9_winxshop.Controllers
         // GET: SanPhams
         public ActionResult Index()
         {
-            var sanPhams = db.SanPhams.Include(s => s.LoaiSanPham);
-            return View(sanPhams.ToList());
+            var model = db.SanPhams.ToList();
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        // for Customer
+        public ActionResult Index2()
+        {
+            var model = db.SanPhams.ToList();
+            return View(model);
         }
 
         // GET: SanPhams/Details/5
@@ -48,8 +57,9 @@ namespace Team9_winxshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(SanPham model)
+        public ActionResult Create(SanPham model, HttpPostedFileBase picture)
         {
+            ValidateProduct(model);
             if (ModelState.IsValid)
             {
                 db.SanPhams.Add(model);
@@ -57,6 +67,14 @@ namespace Team9_winxshop.Controllers
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+
+        private void ValidateProduct(SanPham sanPham)
+        {
+            if(sanPham.DonGia < 0)
+            {
+                ModelState.AddModelError("DonGia", "Đơn giá phải lớn hơn 0");
+            }
         }
 
         // GET: SanPhams/Edit/5
