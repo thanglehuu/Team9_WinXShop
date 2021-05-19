@@ -38,7 +38,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @item.TenSP
+            <a href="@Url.Action("Details", new { id = item.MaSP })" target="_blank"></a>@item.TenSP
         </td>
         <td>
             @item.Size
@@ -47,7 +47,7 @@
             @item.SoLuong
         </td>
         <td>
-            @item.DonGia
+            @item.DonGia.ToString("N")@("đ")
         </td>
         <td>
             @item.Mau
@@ -59,9 +59,12 @@
             @item.LoaiSanPham.TenLoaiSP
         </td>
         <td>
-            <a href="@Url.Action("Edit", new { id = item.MaSP })">Edit</a> |
-            <a href="@Url.Action("Details", new { id = item.MaSP })">Details</a> |
-            <a href="@Url.Action("Delete", new { id = item.MaSP })">Delete</a>
+            <a href="@Url.Action("Edit", new { id = item.MaSP })">
+                <i class="fa fa-edit"></i>
+            </a> |
+            <a href="@Url.Action("Delete", new { id = item.MaSP })">
+                <i class="fa fa-trash"></i>
+            </a>
         </td>
     </tr>
 }
