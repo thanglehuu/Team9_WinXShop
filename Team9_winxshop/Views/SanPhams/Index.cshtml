@@ -53,7 +53,7 @@
             @item.Mau
         </td>
         <td>
-            @item.HinhAnh
+            <img src="@Url.Content(item.HinhAnh)" style="width: 70px; height: 80px"/>
         </td>
         <td>
             @item.LoaiSanPham.TenLoaiSP
@@ -67,3 +67,4 @@
 }
 
 </table>
+<a href="@Url.Action("Index2", "SanPhams")">Về trang chủ</a>
