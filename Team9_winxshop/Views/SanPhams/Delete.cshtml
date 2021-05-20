@@ -4,15 +4,58 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    winxshop@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Log off</a>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.png")" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
-<h3>Are you sure you want to delete this?</h3>
+<h2>Xóa sản phẩm</h2>
+
 <div>
-    <h4>SanPham</h4>
+    <h4>@Model.TenSP (@Model.MaSP)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TenSP)
+            <label>Tên sản phẩm</label>
         </dt>
 
         <dd>
@@ -20,7 +63,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Size)
+            <label>Size</label>
         </dt>
 
         <dd>
@@ -28,7 +71,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
+            <label>Số lượng</label>
         </dt>
 
         <dd>
@@ -36,15 +79,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
+            <label>Đơn giá</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DonGia)
+            @Model.DonGia.ToString("N0") vnđ
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Mau)
+            <label>Màu</label>
         </dt>
 
         <dd>
@@ -52,15 +95,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh)
+            <label>Hình ảnh</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HinhAnh)
+            <img src="@Url.Content(Model.HinhAnh)" style="width: 100px; height: 120px" />
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.LoaiSanPham.TenLoaiSP)
+            <label>Loại sản phẩm</label>
         </dt>
 
         <dd>
@@ -69,11 +112,12 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-default" style="border-color: #e7ab3c;"/> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using Team9_winxshop.Models;
@@ -30,19 +31,16 @@ namespace Team9_winxshop.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         // GET: SanPhams/Details/5
         public ActionResult Details(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SanPham sanPham = db.SanPhams.Find(id);
-            if (sanPham == null)
+            var model = db.SanPhams.Find(id);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sanPham);
+            return View(model);
         }
 
         // GET: SanPhams/Create
@@ -75,15 +73,15 @@ namespace Team9_winxshop.Controllers
             {
                 ModelState.AddModelError("DonGia", "Đơn giá phải lớn hơn 0");
             }
+            if(sanPham.SoLuong <0)
+            {
+                ModelState.AddModelError("SoLuong", "Số lượng phải lớn hơn 0");
+            }
         }
 
         // GET: SanPhams/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             SanPham sanPham = db.SanPhams.Find(id);
             if (sanPham == null)
             {
@@ -98,8 +96,9 @@ namespace Team9_winxshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSP,MaLoaiSP,TenSP,Size,SoLuong,DonGia,Mau,HinhAnh")] SanPham sanPham)
+        public ActionResult Edit(SanPham sanPham)
         {
+            ValidateProduct(sanPham);
             if (ModelState.IsValid)
             {
                 db.Entry(sanPham).State = EntityState.Modified;
@@ -113,16 +112,12 @@ namespace Team9_winxshop.Controllers
         // GET: SanPhams/Delete/5
         public ActionResult Delete(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SanPham sanPham = db.SanPhams.Find(id);
-            if (sanPham == null)
+            var model = db.SanPhams.Find(id);
+            if (model == null)
             {
                 return HttpNotFound();
             }
-            return View(sanPham);
+            return View(model);
         }
 
         // POST: SanPhams/Delete/5
@@ -130,10 +125,17 @@ namespace Team9_winxshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            SanPham sanPham = db.SanPhams.Find(id);
-            db.SanPhams.Remove(sanPham);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            using (var scope = new TransactionScope())
+            {
+                var model = db.SanPhams.Find(id);
+                db.SanPhams.Remove(model);
+                db.SaveChanges();
+
+                System.IO.File.Delete(model.HinhAnh);
+
+                scope.Complete();
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

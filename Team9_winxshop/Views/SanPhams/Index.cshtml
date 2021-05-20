@@ -137,7 +137,7 @@
     {
         <tr>
             <td>
-                <a href="@Url.Action("Details", new { id = product.MaSP })" target="_blank">@product.TenSP</a>
+                @product.TenSP
             </td>
             <td>
                 @product.Size
@@ -146,15 +146,13 @@
                 @product.SoLuong
             </td>
             <td>
-                @product.DonGia.ToString("N")@("đ")
+                @product.DonGia.ToString("N0")@("đ")
             </td>
             <td>
                 @product.Mau
             </td>
             <td>
-                <a href="@Url.Action("Details", new { id = product.MaSP })" target="_blank">
-                    <img src="@Url.Content(product.HinhAnh)" style="width: 70px; height: 80px" />
-                </a>
+               <img src="@Url.Content(product.HinhAnh)" style="width: 70px; height: 80px" />
             </td>
             <td>
                 @product.LoaiSanPham.TenLoaiSP

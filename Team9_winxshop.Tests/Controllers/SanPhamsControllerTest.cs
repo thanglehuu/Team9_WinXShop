@@ -63,19 +63,76 @@ namespace Team9_winxshop.Tests.Controllers
             };
 
             var controller = new SanPhamsController();
-            var result0 = controller.Create(product, null) as ViewResult;
+            var result0 = controller.Create(product) as ViewResult;
 
             Assert.IsNotNull(result0);
             Assert.AreEqual("Đơn giá phải lớn hơn 0", controller.ModelState["DonGia"].Errors[0].ErrorMessage);
+            Assert.AreEqual("Số lượng phải lớn hơn 0", controller.ModelState["SoLuong"].Errors[0].ErrorMessage);
+        }
 
-            using (var scope = new TransactionScope())
+        [TestMethod]
+        public void TestEditP()
+        {
+            var rand = new Random();
+            var product = new SanPham
             {
-                var db = new CT25Team19Entities();
-                var entity = db.SanPhams.SingleOrDefault(p => p.TenSP == product.TenSP && p.MaLoaiSP == product.MaLoaiSP && p.Mau == product.Mau);
-                Assert.IsNotNull(entity);
-                Assert.AreEqual(product.DonGia, entity.DonGia);
+                TenSP = rand.NextDouble().ToString(),
+                SoLuong = -rand.Next(),
+                DonGia = -rand.Next()
+            };
 
-            }
+            var controller = new SanPhamsController();
+            var result0 = controller.Edit(product) as ViewResult;
+
+            Assert.IsNotNull(result0);
+            Assert.AreEqual("Đơn giá phải lớn hơn 0", controller.ModelState["DonGia"].Errors[0].ErrorMessage);
+            Assert.AreEqual("Số lượng phải lớn hơn 0", controller.ModelState["SoLuong"].Errors[0].ErrorMessage);
+        }
+
+        [TestMethod]
+        public void TestEditG()
+        {
+            var controller = new SanPhamsController();
+            var result0 = controller.Edit(ToString()) as HttpNotFoundResult;
+            Assert.IsNotNull(result0);
+
+            var db = new CT25Team19Entities();
+            var product = db.SanPhams.First();
+            var result = controller.Edit(product.MaSP) as ViewResult;
+            Assert.IsNotNull(result);
+
+            var model = result.Model as SanPham;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(product.MaSP, model.MaSP);
+            Assert.AreEqual(product.TenSP, model.TenSP);
+            Assert.AreEqual(product.SoLuong, model.SoLuong);
+            Assert.AreEqual(product.MaLoaiSP, model.MaLoaiSP);
+            Assert.AreEqual(product.Mau, model.Mau);
+            Assert.AreEqual(product.HinhAnh, model.HinhAnh);
+            Assert.AreEqual(product.Size, model.Size);
+        }
+
+        [TestMethod]
+        public void TestDeleteG()
+        {
+            var controller = new SanPhamsController();
+            var result0 = controller.Delete(ToString()) as HttpNotFoundResult;
+            Assert.IsNotNull(result0);
+
+            var db = new CT25Team19Entities();
+            var product = db.SanPhams.First();
+            var result = controller.Edit(product.MaSP) as ViewResult;
+            Assert.IsNotNull(result);
+
+            var model = result.Model as SanPham;
+            Assert.IsNotNull(model);
+            Assert.AreEqual(product.MaSP, model.MaSP);
+            Assert.AreEqual(product.TenSP, model.TenSP);
+            Assert.AreEqual(product.SoLuong, model.SoLuong);
+            Assert.AreEqual(product.MaLoaiSP, model.MaLoaiSP);
+            Assert.AreEqual(product.Mau, model.Mau);
+            Assert.AreEqual(product.HinhAnh, model.HinhAnh);
+            Assert.AreEqual(product.Size, model.Size);
         }
     }
 }
