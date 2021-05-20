@@ -10,6 +10,7 @@ using Team9_winxshop.Models;
 
 namespace Team9_winxshop.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AspNetRolesController : Controller
     {
         private CT25Team19Entities db = new CT25Team19Entities();
