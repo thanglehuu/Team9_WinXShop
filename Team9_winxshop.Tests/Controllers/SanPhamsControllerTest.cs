@@ -4,6 +4,7 @@ using Team9_winxshop.Controllers;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using Team9_winxshop.Models;
+using System.Transactions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Team9_winxshop.Tests.Controllers
@@ -66,6 +67,15 @@ namespace Team9_winxshop.Tests.Controllers
 
             Assert.IsNotNull(result0);
             Assert.AreEqual("Đơn giá phải lớn hơn 0", controller.ModelState["DonGia"].Errors[0].ErrorMessage);
+
+            using (var scope = new TransactionScope())
+            {
+                var db = new CT25Team19Entities();
+                var entity = db.SanPhams.SingleOrDefault(p => p.TenSP == product.TenSP && p.MaLoaiSP == product.MaLoaiSP && p.Mau == product.Mau);
+                Assert.IsNotNull(entity);
+                Assert.AreEqual(product.DonGia, entity.DonGia);
+
+            }
         }
     }
 }

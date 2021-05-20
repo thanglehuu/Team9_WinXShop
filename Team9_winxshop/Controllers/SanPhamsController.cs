@@ -57,7 +57,7 @@ namespace Team9_winxshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(SanPham model, HttpPostedFileBase picture)
+        public ActionResult Create(SanPham model)
         {
             ValidateProduct(model);
             if (ModelState.IsValid)
