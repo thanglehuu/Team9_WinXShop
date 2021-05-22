@@ -80,13 +80,13 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="group-input">
                             <label for="username">Email address *</label>
-                               @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                               @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                         <div class="group-input">
                             <label for="pass">Password *</label>
-                               @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                               @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="group-input gi-check">
                             <div class="gi-more">
@@ -102,10 +102,6 @@
                         <div class="switch-login">
                             <a href="@Url.Action("Register", "Account")" class="or-login">Or Create An Account</a>
                         </div>
-                        @* Enable this once you have account confirmation enabled for password reset functionality
-            <p>
-                @Html.ActionLink("Forgot your password?", "ForgotPassword")
-            </p>*@
                     }
                 </div>
             </div>

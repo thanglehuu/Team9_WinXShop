@@ -44,12 +44,14 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search" style="width: 300px;">
-                            <div class="input-group">
-                                <input type="text" placeholder="What do you need?">
-                                <button type="button" style="right: -100px"><i class="ti-search"></i></button>
+                        <form action="@Url.Action("Search", "SanPhams")" method="get">
+                            <div class="advanced-search" style="width: 500px;">
+                                <div class="input-group">
+                                    <input type="text" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                                    <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
@@ -154,9 +156,9 @@
                                 </div>
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <input type="text" value="1" />
                                     </div>
-                                    <a href="#" class="primary-btn pd-cart">Thêm vào giỏ hàng</a>
+                                    <a href="#" class="primary-btn pd-cart" style="padding-right: 20px; padding-left: 20px">Thêm vào giỏ hàng</a>
                                 </div>
                             </div>
                         </div>

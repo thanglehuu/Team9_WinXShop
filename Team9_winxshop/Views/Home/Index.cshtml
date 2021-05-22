@@ -51,12 +51,14 @@
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7">
-                        <div class="advanced-search" style="width: 300px;">
-                            <div class="input-group">
-                                <input type="text" placeholder="What do you need?">
-                                <button type="button" style="right: -100px"><i class="ti-search"></i></button>
+                        <form action="@Url.Action("Search", "SanPhams")" method="get">
+                            <div class="advanced-search" style="width: 500px;">
+                                <div class="input-group">
+                                    <input type="text" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                                    <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
@@ -143,14 +145,14 @@
                 <div class="col-lg-3">
                     <div class="product-large set-bg" data-setbg="@Url.Content("~/assets/img/products/women-large.jpg")">
                         <h2>Women’s</h2>
-                        <a href="#">Discover More</a>
+                        <a href="@Url.Action("Index2", "SanPhams")">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
                         @foreach (var product in Model)
                         {
-                            if (product.MaSP.ToString().Contains("ANU") || product.MaSP.ToString().Contains("QNU"))
+                            if (product.MaSP.ToString().Contains("NU"))
                             {
                                 <div class="product-item">
                                     <div class="pi-pic">
@@ -161,12 +163,12 @@
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">Coat</div>
+                                        <div class="catagory-name">@product.LoaiSanPham.TenLoaiSP</div>
                                         <a href="#">
                                             <h5>@product.TenSP</h5>
                                         </a>
                                         <div class="product-price">
-                                            @product.DonGia.ToString("N")@("đ")
+                                            @product.DonGia.ToString("N0")@("đ")
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +188,7 @@
                     <div class="product-slider owl-carousel">
                         @foreach (var product in Model)
                         {
-                            if (product.MaSP.ToString().Contains("ANAM") || product.MaSP.ToString().Contains("QNAM"))
+                            if (product.MaSP.ToString().Contains("NAM"))
                             {
                                 <div class="product-item">
                                     <div class="pi-pic">
@@ -197,12 +199,12 @@
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">Coat</div>
+                                        <div class="catagory-name">@product.LoaiSanPham.TenLoaiSP</div>
                                         <a href="#">
                                             <h5>@product.TenSP</h5>
                                         </a>
                                         <div class="product-price">
-                                            @product.DonGia.ToString("N")@("đ")
+                                            @product.DonGia.ToString("N0")@("đ")
                                         </div>
                                     </div>
                                 </div>
@@ -213,7 +215,7 @@
                 <div class="col-lg-3 offset-lg-1">
                     <div class="product-large set-bg m-large" data-setbg="@Url.Content("~/assets/img/products/man-large.jpg")">
                         <h2>Men’s</h2>
-                        <a href="#">Discover More</a>
+                        <a href="@Url.Action("Index2", "SanPhams")">Discover More</a>
                     </div>
                 </div>
             </div>
