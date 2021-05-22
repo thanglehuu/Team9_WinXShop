@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Team9_winxshop.Models.SanPham>
+@using Team9_winxshop.Models
 
 @{
     ViewBag.Title = "Home Page";
@@ -63,8 +64,9 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                             <li class="cart-icon">
-                                <a href="#">
+                                <a href="@Url.Action("Index", "GioHangs")">
                                     <i class="icon_bag_alt"></i>
+                                    @((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count)
                                 </a>
                             </li>
                             <li class="cart-price">$150.00</li>
@@ -159,7 +161,7 @@
                                         <img src="@Url.Content(product.HinhAnh)" alt="">
                                         <ul>
                                             <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                            <li class="quick-view"><a href="@Url.Action("Details", "SanPhams",new { id = product.MaSP })">+ Quick View</a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">
@@ -192,10 +194,13 @@
                             {
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="@Url.Content(product.HinhAnh)" alt="">
+                                        <a href="@Url.Action("Details", "SanPhams", new { id = product.MaSP })">
+                                            <img src="@Url.Content(product.HinhAnh)" alt="">
+                                        </a>
+                                        
                                         <ul>
                                             <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                            <li class="quick-view"><a href="@Url.Action("Details", "SanPhams", new { id = product.MaSP })">+ Quick View</a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">

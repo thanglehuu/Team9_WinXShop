@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRoleUserController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
+    <Compile Include="Controllers\GioHangsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SanPhamsController.cs" />
@@ -315,7 +316,9 @@
     <Content Include="assets\img\products\ANU02.jpg" />
     <Content Include="assets\img\products\HDNAM01.jpg" />
     <Content Include="assets\img\products\HDNU01.jpg" />
+    <Content Include="assets\img\products\man-large.jpg" />
     <Content Include="assets\img\products\QNU01.jpg" />
+    <Content Include="assets\img\products\women-large.jpg" />
     <Content Include="assets\img\select-product-1.jpg" />
     <Content Include="assets\img\select-product-2.jpg" />
     <Content Include="assets\js\bootstrap.min.js" />
@@ -391,6 +394,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\SanPhams\Index2.cshtml" />
+    <Content Include="Views\GioHangs\Create.cshtml" />
+    <Content Include="Views\GioHangs\Delete.cshtml" />
+    <Content Include="Views\GioHangs\Details.cshtml" />
+    <Content Include="Views\GioHangs\Edit.cshtml" />
+    <Content Include="Views\GioHangs\Index.cshtml" />
     <None Include="Views\Shared\winxshop.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -1,0 +1,227 @@
+﻿@model IEnumerable<Team9_winxshop.Models.ChiTietGioHang>
+@using Team9_winxshop.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    winxshop@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Log off</a>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href=".@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.png")" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <form action="@Url.Action("Search", "SanPhams")" method="get">
+                        <div class="advanced-search" style="width: 500px;">
+                            <div class="input-group">
+                                <input type="text" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                                <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-3 text-right col-md-3">
+                    <ul class="nav-right">
+                        <li class="cart-icon">
+                            <a href="@Url.Action("Index", "GioHangs")">
+                                <i class="icon_bag_alt"></i>
+                                @((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count)
+                            </a>
+                        </li>
+                        <li class="cart-price">$150.00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <div class="container">
+            <div class="nav-depart">
+                <div class="depart-btn">
+                    <i class="ti-menu"></i>
+                    <span>All departments</span>
+                    <ul class="depart-hover">
+                        <li class="active"><a href="#">Women’s Clothing</a></li>
+                        <li><a href="#">Men’s Clothing</a></li>
+                    </ul>
+                </div>
+            </div>
+            <nav class="nav-menu mobile-menu">
+                <ul>
+                    <li class="active"><a href="./index.html">Home</a></li>
+                    <li><a href="@Url.Action("Index2", "SanPhams")">Shop</a></li>
+                    <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    <li>
+                        <a href="#">Pages</a>
+                        <ul class="dropdown">
+                            <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                            <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </div>
+</header>
+<!-- Header End -->
+<!-- Banner Section Begin -->
+<h2 style="position: absolute; margin-top: 20px; margin-left: 20px">Giỏ hàng</h2>
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cart-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th class="p-name">Tên sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                                <th><i class="ti-close"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var product in Model)
+                            {
+                                <tr>
+                                    <td class="cart-pic first-row">
+                                        <a href="@Url.Action("Details", "SanPhams", new { id = product.SanPham.MaSP })">
+                                            <img src="@Url.Content(product.SanPham.HinhAnh)" alt="" width="120px" height="140px">
+                                        </a>
+                                    </td>
+                                    <td class="cart-title first-row">
+                                        <a href="@Url.Action("Details", "SanPhams", new { id = product.SanPham.MaSP })">
+                                            <h5>@product.SanPham.TenSP</h5>
+                                        </a>
+                                    </td>
+                                    <td class="p-price first-row">@product.SanPham.DonGia.ToString("N0")đ</td>
+                                    <td class="qua-col first-row">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="@product.SoLuong" max="@product.SanPham.SoLuong">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="total-price first-row">@((product.SanPham.DonGia * product.SoLuong).ToString("N0"))đ</td>
+                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="cart-buttons">
+                            <a href="@Url.Action("Index", "Home")" class="primary-btn continue-shop">Continue shopping</a>
+                            <a href="#" class="primary-btn up-cart">Update cart</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-4">
+                        <div class="proceed-checkout">
+                            <ul>
+                                <li class="subtotal">Subtotal <span>$240.00</span></li>
+                                <li class="cart-total">Total <span>$240.00</span></li>
+                            </ul>
+                            <a href="#" class="proceed-btn">CHECK OUT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <a href="#"><img src="@Url.Content("~/assets/img/footer-logo.png")" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-1">
+                <div class="footer-widget">
+                    <h5>Information</h5>
+                    <ul>
+                        <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+                        <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="newslatter-item">
+                    <h5>Join Our Newsletter Now</h5>
+                    <p>Get E-mail updates about our latest shop and special offers.</p>
+                    <form action="#" class="subscribe-form">
+                        <input type="text" placeholder="Enter Your Mail">
+                        <button type="button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-reserved">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="payment-pic">
+                        <img src="@Url.Content("~/assets/img/payment-method.png")" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
