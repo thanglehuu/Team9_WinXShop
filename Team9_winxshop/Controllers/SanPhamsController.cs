@@ -24,6 +24,25 @@ namespace Team9_winxshop.Controllers
         }
 
         [AllowAnonymous]
+        public ActionResult Search(string keyword)
+        {
+            var model = db.SanPhams.ToList();
+            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
+            ViewBag.Keyword = keyword;
+            return View("Index2", model);
+
+        }
+
+        public ActionResult Search2(string keyword)
+        {
+            var model = db.SanPhams.ToList();
+            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower()) || p.MaSP.ToLower().Contains(keyword.ToLower())).ToList();
+            ViewBag.Keyword = keyword;
+            return View("Index", model);
+
+        }
+
+        [AllowAnonymous]
         // for Customer
         public ActionResult Index2()
         {
@@ -130,8 +149,6 @@ namespace Team9_winxshop.Controllers
                 var model = db.SanPhams.Find(id);
                 db.SanPhams.Remove(model);
                 db.SaveChanges();
-
-                System.IO.File.Delete(model.HinhAnh);
 
                 scope.Complete();
                 return RedirectToAction("Index");
