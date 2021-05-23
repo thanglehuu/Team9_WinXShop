@@ -66,10 +66,9 @@
                         <li class="cart-icon">
                             <a href="@Url.Action("Index", "GioHangs")">
                                 <i class="icon_bag_alt"></i>
-                                @((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count)
+                                @((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString())
                             </a>
                         </li>
-                        <li class="cart-price">$150.00</li>
                     </ul>
                 </div>
             </div>
@@ -89,7 +88,7 @@
             </div>
             <nav class="nav-menu mobile-menu">
                 <ul>
-                    <li class="active"><a href="./index.html">Home</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
                     <li><a href="@Url.Action("Index2", "SanPhams")">Shop</a></li>
                     <li><a href="@Url.Action("About", "Home")">About Us</a></li>
                     <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
