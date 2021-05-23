@@ -11,6 +11,7 @@ using Team9_winxshop.Models;
 
 namespace Team9_winxshop.Controllers
 {
+    [Authorize]
     public class GioHangsController : Controller
     {
         private CT25Team19Entities db = new CT25Team19Entities();

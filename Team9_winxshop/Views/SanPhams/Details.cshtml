@@ -1,4 +1,5 @@
 ﻿@model Team9_winxshop.Models.SanPham
+@using Team9_winxshop.Models
 
 @{
     ViewBag.Title = "Details";
@@ -58,6 +59,7 @@
                             <li class="cart-icon">
                                 <a href="#">
                                     <i class="icon_bag_alt"></i>
+                                    <span>@((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString())</span>
                                 </a>
                             </li>
                         </ul>
@@ -134,7 +136,7 @@
                                         Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
                                         sit amet, consectetur adipisicing elit, sed do mod tempor
                                     </p>
-                                    
+
                                 </div>
                                 <div class="pd-size-choose">
                                     <div class="sc-item">
@@ -165,7 +167,7 @@
                                         </div>
                                         <input type="submit" class="primary-btn pd-cart" value="Thêm vào giỏ hàng" style="padding-right: 20px; padding-left: 20px; border-style: none;" />
                                     </div>
-                                </form> 
+                                </form>
                             </div>
                         </div>
                     </div>

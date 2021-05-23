@@ -66,7 +66,7 @@
                         <li class="cart-icon">
                             <a href="@Url.Action("Index", "GioHangs")">
                                 <i class="icon_bag_alt"></i>
-                                @((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString())
+                                <span>@((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString()) </span>
                             </a>
                         </li>
                     </ul>
@@ -97,7 +97,7 @@
                         <ul class="dropdown">
                             <li><a href="@Url.Action("Login", "Account")">Login</a></li>
                             <li><a href="@Url.Action("Register", "Account")">Register</a></li>
-                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
+                            <li><a href="@Url.Action("Index", "GioHangs")">Shopping Cart</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -118,7 +118,7 @@
                         <thead>
                             <tr>
                                 <th>Hình ảnh</th>
-                                <th class="p-name">Tên sản phẩm</th>
+                                <th class="p-name">Sản phẩm</th>
                                 <th>Đơn giá</th>
                                 <th>Số lượng</th>
                                 <th>Thành tiền</th>
@@ -135,9 +135,11 @@
                                         </a>
                                     </td>
                                     <td class="cart-title first-row">
+                                        <span  style="font-size: 13px; color: #b2b2b2">@product.SanPham.MaSP</span>
                                         <a href="@Url.Action("Details", "SanPhams", new { id = product.SanPham.MaSP })">
                                             <h5>@product.SanPham.TenSP</h5>
                                         </a>
+                                        <span>Size: @product.SanPham.Size</span>
                                     </td>
                                     <td class="p-price first-row">@product.SanPham.DonGia.ToString("N0")đ</td>
                                     <td class="qua-col first-row">

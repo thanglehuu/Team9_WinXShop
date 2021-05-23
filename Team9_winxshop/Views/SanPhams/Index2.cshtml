@@ -66,7 +66,7 @@
                             <li class="cart-icon">
                                 <a href="@Url.Action("Index", "GioHangs")">
                                     <i class="icon_bag_alt"></i>
-                                    @((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString())
+                                    <span>@((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString()) </span>
                                 </a>
                             </li>
                         </ul>
