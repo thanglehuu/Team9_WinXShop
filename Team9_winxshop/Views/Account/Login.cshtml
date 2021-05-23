@@ -4,34 +4,6 @@
     ViewBag.Title = "Log in";
 }
 <header class="header-section">
-    <div class="header-top">
-        <div class="container">
-            <div class="ht-left">
-                <div class="mail-service">
-                    <i class=" fa fa-envelope"></i>
-                    winxshop@gmail.com
-                </div>
-                <div class="phone-service">
-                    <i class=" fa fa-phone"></i>
-                    +65 11.188.888
-                </div>
-            </div>
-            <div class="ht-right">
-                @if (Request.IsAuthenticated)
-                {
-                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Log off</a>
-                    }
-                }
-                else
-                {
-                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                }
-            </div>
-        </div>
-    </div>
     <div class="container">
         <div class="inner-header">
             <div class="row">
@@ -40,14 +12,6 @@
                         <a href="@Url.Action("Index", "Home")">
                             <img src="@Url.Content("~/assets/img/logo.png")" alt="">
                         </a>
-                    </div>
-                </div>
-                <div class="col-lg-7 col-md-7">
-                    <div class="advanced-search" style="width: 300px;">
-                        <div class="input-group">
-                            <input type="text" placeholder="What do you need?">
-                            <button type="button" style="right: -100px"><i class="ti-search"></i></button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -60,7 +24,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <a href="@Url.Action("Login", "Account")"><i class="fa fa-home"></i> Home</a>
+                    <a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i> Login</a>
                     <span>Login</span>
                 </div>
             </div>

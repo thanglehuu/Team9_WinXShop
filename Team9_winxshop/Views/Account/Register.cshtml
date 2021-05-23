@@ -3,37 +3,7 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
-
 <header class="header-section">
-    <div class="header-top">
-        <div class="container">
-            <div class="ht-left">
-                <div class="mail-service">
-                    <i class=" fa fa-envelope"></i>
-                    winxshop@gmail.com
-                </div>
-                <div class="phone-service">
-                    <i class=" fa fa-phone"></i>
-                    +65 11.188.888
-                </div>
-            </div>
-            <div class="ht-right">
-                @if (Request.IsAuthenticated)
-                {
-                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Log off</a>
-                    }
-                }
-                else
-                {
-                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                }
-            </div>
-        </div>
-    </div>
     <div class="container">
         <div class="inner-header">
             <div class="row">
@@ -47,37 +17,6 @@
             </div>
         </div>
     </div>
-    <div class="nav-item">
-        <div class="container">
-            <div class="nav-depart">
-                <div class="depart-btn">
-                    <i class="ti-menu"></i>
-                    <span>All departments</span>
-                    <ul class="depart-hover">
-                        <li class="active"><a href="#">Women’s Clothing</a></li>
-                        <li><a href="#">Men’s Clothing</a></li>
-                    </ul>
-                </div>
-            </div>
-            <nav class="nav-menu mobile-menu">
-                <ul>
-                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li class="active"><a href="@Url.Action("Index2", "SanPhams")">Shop</a></li>
-                    <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-                    <li>
-                        <a href="#">Pages</a>
-                        <ul class="dropdown">
-                            <li><a href="@Url.Action("Login", "Account")">Login</a></li>
-                            <li><a href="@Url.Action("Register", "Account")">Register</a></li>
-                            <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <div id="mobile-menu-wrap"></div>
-        </div>
-    </div>
 </header>
 
 <div class="breacrumb-section">
@@ -85,7 +24,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+                    <a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i> Login</a>
                     <span>Register</span>
                 </div>
             </div>
