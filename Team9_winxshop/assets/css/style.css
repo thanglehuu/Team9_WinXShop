@@ -39,6 +39,11 @@ body {
 	font-smoothing: antialiased;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	opacity: 1;
+}
+
 h1,
 h2,
 h3,

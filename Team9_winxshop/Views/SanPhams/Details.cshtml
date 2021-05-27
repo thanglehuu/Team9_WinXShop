@@ -162,10 +162,8 @@
                                         <h4>@Model.DonGia.ToString("N0")@("đ")</h4>
                                     </div>
                                     <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input name="quantity" type="text" value="1" min="1" max="@Model.SoLuong" />
-                                        </div>
-                                        <input type="submit" class="primary-btn pd-cart" value="Thêm vào giỏ hàng" style="padding-right: 20px; padding-left: 20px; border-style: none;" />
+                                        <input name="quantity" type="number" value="1" min="1" max="@Model.SoLuong"/>
+                                        <input type="submit" class="primary-btn pd-cart" value="Thêm vào giỏ hàng" style="padding-right: 20px; padding-left: 20px; border-style: none; margin-left: 10px;" />
                                     </div>
                                 </form>
                             </div>
@@ -264,7 +262,7 @@
                 <div class="col-lg-3">
                     <div class="footer-left">
                         <div class="footer-logo">
-                            <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/assets/img/footer-logo.png")" alt=""></a>
+                            <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/assets/img/logo.jpg")" alt=""></a>
                         </div>
                     </div>
                 </div>

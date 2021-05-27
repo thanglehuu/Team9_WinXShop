@@ -46,8 +46,8 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href=".@Url.Action("Index", "Home")">
-                            <img src="@Url.Content("~/assets/img/logo.png")" alt="">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
                         </a>
                     </div>
                 </div>
@@ -106,84 +106,113 @@
         </div>
     </div>
 </header>
-<!-- Header End -->
-<!-- Banner Section Begin -->
-<h2 style="position: absolute; margin-top: 20px; margin-left: 20px">Giỏ hàng</h2>
-<section class="shopping-cart spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="cart-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Hình ảnh</th>
-                                <th class="p-name">Sản phẩm</th>
-                                <th>Đơn giá</th>
-                                <th>Số lượng</th>
-                                <th>Thành tiền</th>
-                                <th><i class="ti-close"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var product in Model)
-                            {
-                                <tr>
-                                    <td class="cart-pic first-row">
-                                        <a href="@Url.Action("Details", "SanPhams", new { id = product.SanPham.MaSP })">
-                                            <img src="@Url.Content(product.SanPham.HinhAnh)" alt="" width="120px" height="140px">
-                                        </a>
-                                    </td>
-                                    <td class="cart-title first-row">
-                                        <span  style="font-size: 13px; color: #b2b2b2">@product.SanPham.MaSP</span>
-                                        <a href="@Url.Action("Details", "SanPhams", new { id = product.SanPham.MaSP })">
-                                            <h5>@product.SanPham.TenSP</h5>
-                                        </a>
-                                        <span>Size: @product.SanPham.Size</span>
-                                    </td>
-                                    <td class="p-price first-row">@product.SanPham.DonGia.ToString("N0")đ</td>
-                                    <td class="qua-col first-row">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="@product.SoLuong" max="@product.SanPham.SoLuong">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="total-price first-row">@((product.SanPham.DonGia * product.SoLuong).ToString("N0"))đ</td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="cart-buttons">
-                            <a href="@Url.Action("Index", "Home")" class="primary-btn continue-shop">Continue shopping</a>
-                            <a href="#" class="primary-btn up-cart">Update cart</a>
+<div class="breadcrumb-text product-more">
+    <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
+    <a href="@Url.Action("Index2", "SanPhams")">Shop</a>
+    <span>Shopping Cart</span>
+</div>
+@if ((Session["ShoppingCart"] as List<ChiTietGioHang>).Count == 0)
+{
+    <div style="padding: 50px 0 50px 50px; font-size: 40px">Giỏ hàng của bạn đang trống</div>
+    <div class="col-lg-4">
+        <div class="cart-buttons">
+            <a href="@Url.Action("Index2", "SanPhams")" class="primary-btn up-cart">Tiếp tục mua sắm</a>
+        </div>
+    </div>
+}
+else
+{
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="@Url.Action("UpdateCart", "GioHangs")" method="get">
+                        <div class="cart-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Hình ảnh</th>
+                                        <th class="p-name">Sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var product in Model)
+                                    {
+                                        <tr>
+                                            <td class="cart-pic first-row">
+                                                <a href="@Url.Action("Details", "SanPhams", new { id = product.SanPham.MaSP })">
+                                                    <img src="@Url.Content(product.SanPham.HinhAnh)" alt="" width="120px" height="140px">
+                                                </a>
+                                            </td>
+                                            <td class="cart-title first-row">
+                                                <span style="font-size: 13px; color: #b2b2b2">@product.SanPham.MaSP</span>
+                                                <a href="@Url.Action("Details", "SanPhams", new { id = product.SanPham.MaSP })">
+                                                    <h5>@product.SanPham.TenSP</h5>
+                                                </a>
+                                                <span>Size: @product.SanPham.Size</span>
+                                            </td>
+                                            <td class="p-price first-row">@product.SanPham.DonGia.ToString("N0")đ</td>
+                                            <td class="qua-col first-row">
+                                                @if (product.SoLuong > product.SanPham.SoLuong)
+                                                {
+                                                    <div class="quantity">
+                                                        <input name="quantity" type="number" value="@product.SanPham.SoLuong" min="1" max="@product.SanPham.SoLuong" />
+                                                    </div>
+                                                <td class="total-price first-row">@((product.SanPham.DonGia * product.SanPham.SoLuong).ToString("N0"))đ</td>
+                                            }
+                                            else
+                                            {
+                                                <div class="quantity">
+                                                    <input name="quantity" type="number" value="@product.SoLuong" min="1" max="@product.SanPham.SoLuong" />
+                                                </div>
+                                                <td class="total-price first-row">@((product.SanPham.DonGia * product.SoLuong).ToString("N0"))đ</td>
+                                            }
+                                                </td>
+                                                <td class="close-td first-row">@Html.ActionLink("Xóa", "Delete", "GioHangs", new { productId = product.SanPham.MaSP })</td>
+                                            </tr>
+                                        }
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                    <div class="col-lg-4 offset-lg-4">
-                        <div class="proceed-checkout">
-                            <ul>
-                                <li class="subtotal">Subtotal <span>$240.00</span></li>
-                                <li class="cart-total">Total <span>$240.00</span></li>
-                            </ul>
-                            <a href="#" class="proceed-btn">CHECK OUT</a>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="cart-buttons">
+                                    <a href="@Url.Action("Index", "Home")" class="primary-btn continue-shop">Tiếp tục mua sắm</a>
+                                    <input type="submit" value="Cập nhật giỏ hàng" class="primary-btn up-cart" style="position: absolute;" />
+                                </div>
+                            </div>
+                            <div class="col-lg-4 offset-lg-4">
+                                <div class="proceed-checkout">
+                                    <ul>
+                                        @{
+                                            List<ChiTietGioHang> temp = (List<ChiTietGioHang>)Session["ShoppingCart"];
+                                            var total = String.Format("{0:N0}", temp.Sum(x => x.SoLuong * x.SanPham.DonGia));
+                                        }
+                                        <li class="cart-total">Tổng tiền:<span>@total đ</span></li>
+                                    </ul>
+                                    <a href="#" class="proceed-btn">THANH TOÁN</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+
+
 <footer class="footer-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="footer-left">
                     <div class="footer-logo">
-                        <a href="#"><img src="@Url.Content("~/assets/img/footer-logo.png")" alt=""></a>
+                        <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/assets/img/logo.jpg")" alt=""></a>
                     </div>
                 </div>
             </div>

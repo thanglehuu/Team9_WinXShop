@@ -21,7 +21,7 @@ namespace Team9_winxshop.Models
             this.ChiTietThanhToans = new HashSet<ChiTietThanhToan>();
         }
     
-        public string MaDH { get; set; }
+        public int MaDH { get; set; }
         public string Email { get; set; }
         public int MaTT { get; set; }
         public string DiaChiNguoiNhan { get; set; }

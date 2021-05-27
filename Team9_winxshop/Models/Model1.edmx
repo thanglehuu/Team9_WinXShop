@@ -61,7 +61,7 @@
             <PropertyRef Name="MaCTDH" />
           </Key>
           <Property Name="MaCTDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaDH" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaDH" Type="int" Nullable="false" />
           <Property Name="MaSP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
         </EntityType>
@@ -70,7 +70,7 @@
             <PropertyRef Name="MaCTGH" />
           </Key>
           <Property Name="MaCTGH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaGH" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaGH" Type="int" Nullable="false" />
           <Property Name="MaSP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
         </EntityType>
@@ -82,7 +82,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             <PropertyRef Name="MaHTTT" />
             <PropertyRef Name="SoTien" />
           </Key>
-          <Property Name="MaDH" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaDH" Type="int" Nullable="false" />
           <Property Name="MaHTTT" Type="int" Nullable="false" />
           <Property Name="SoTien" Type="int" Nullable="false" />
         </EntityType>
@@ -90,7 +90,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Key>
             <PropertyRef Name="MaDH" />
           </Key>
-          <Property Name="MaDH" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaDH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="MaTT" Type="int" Nullable="false" />
           <Property Name="DiaChiNguoiNhan" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -102,7 +102,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Key>
             <PropertyRef Name="MaGH" />
           </Key>
-          <Property Name="MaGH" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaGH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TongTien" Type="int" Nullable="false" />
           <Property Name="NgayTao" Type="date" Nullable="false" />
@@ -466,7 +466,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             <PropertyRef Name="MaCTDH" />
           </Key>
           <Property Name="MaCTDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaDH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaDH" Type="Int32" Nullable="false" />
           <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DonHang" Relationship="Self.FK_ChiTietDonHang_DonHang" FromRole="ChiTietDonHang" ToRole="DonHang" />
@@ -477,7 +477,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             <PropertyRef Name="MaCTGH" />
           </Key>
           <Property Name="MaCTGH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaGH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaGH" Type="Int32" Nullable="false" />
           <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
           <NavigationProperty Name="GioHang" Relationship="Self.FK_ChiTietGioHang_GioHang" FromRole="ChiTietGioHang" ToRole="GioHang" />
@@ -487,7 +487,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Key>
             <PropertyRef Name="MaDH" />
           </Key>
-          <Property Name="MaDH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaTT" Type="Int32" Nullable="false" />
           <Property Name="DiaChiNguoiNhan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
@@ -503,7 +503,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Key>
             <PropertyRef Name="MaGH" />
           </Key>
-          <Property Name="MaGH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaGH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TongTien" Type="Int32" Nullable="false" />
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="0" />
@@ -569,7 +569,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             <PropertyRef Name="MaHTTT" />
             <PropertyRef Name="SoTien" />
           </Key>
-          <Property Name="MaDH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaDH" Type="Int32" Nullable="false" />
           <Property Name="MaHTTT" Type="Int32" Nullable="false" />
           <Property Name="SoTien" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DonHang" Relationship="Self.FK_ChiTietThanhToan_DonHang" FromRole="ChiTietThanhToan" ToRole="DonHang" />
