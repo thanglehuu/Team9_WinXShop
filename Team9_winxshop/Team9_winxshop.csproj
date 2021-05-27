@@ -297,7 +297,7 @@
     <Content Include="assets\img\logo-carousel\logo-3.png" />
     <Content Include="assets\img\logo-carousel\logo-4.png" />
     <Content Include="assets\img\logo-carousel\logo-5.png" />
-    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\logo.jpg" />
     <Content Include="assets\img\payment-method.png" />
     <Content Include="assets\img\product-single\avatar-1.png" />
     <Content Include="assets\img\product-single\avatar-2.png" />
@@ -352,13 +352,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
     <Content Include="assets\fonts\ElegantIcons.eot" />
     <Content Include="assets\fonts\ElegantIcons.ttf" />
     <Content Include="assets\fonts\ElegantIcons.woff" />
@@ -382,6 +375,13 @@
     <Content Include="assets\Source\SlickNav-master.zip" />
     <Content Include="assets\Source\themify-icons-font.zip" />
     <Content Include="assets\Source\zoom-master.zip" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

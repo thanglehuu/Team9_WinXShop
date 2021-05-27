@@ -41,7 +41,10 @@ namespace Team9_winxshop.Controllers
                 {
                     (hashtable[billdetail.SanPham.MaSP] as ChiTietGioHang).SoLuong += billdetail.SoLuong;
                 }
-                else hashtable[billdetail.SanPham.MaSP] = billdetail;
+                else
+                {
+                    hashtable[billdetail.SanPham.MaSP] = billdetail;
+                }
             }
 
             ShoppingCart.Clear();
@@ -53,7 +56,7 @@ namespace Team9_winxshop.Controllers
             return View(ShoppingCart);
         }
 
-
+        [AllowAnonymous]
         // GET: GioHangs/Create
         [HttpPost]
         public ActionResult Create(string productId, int quantity)
@@ -68,35 +71,28 @@ namespace Team9_winxshop.Controllers
         }
 
         // GET: GioHangs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult UpdateCart(int quantity)
         {
-            if (id == null)
+            for(int i = 0; i < ShoppingCart.Count; i++)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                ShoppingCart[i].SoLuong = quantity;
             }
-            ChiTietGioHang chiTietGioHang = db.ChiTietGioHangs.Find(id);
-            if (chiTietGioHang == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.MaGH = new SelectList(db.GioHangs, "MaGH", "Email", chiTietGioHang.MaGH);
-            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "MaLoaiSP", chiTietGioHang.MaSP);
-            return View(chiTietGioHang);
+            return RedirectToAction("Index");
         }
 
         // GET: GioHangs/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string productId)
         {
-            if (id == null)
+            foreach(var billdetail in ShoppingCart)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if(billdetail.MaSP == productId)
+                {
+                    ShoppingCart.Remove(billdetail);
+                    break;
+                }
             }
-            ChiTietGioHang chiTietGioHang = db.ChiTietGioHangs.Find(id);
-            if (chiTietGioHang == null)
-            {
-                return HttpNotFound();
-            }
-            return View(chiTietGioHang);
+            
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

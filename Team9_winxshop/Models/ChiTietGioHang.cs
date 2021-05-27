@@ -15,7 +15,7 @@ namespace Team9_winxshop.Models
     public partial class ChiTietGioHang
     {
         public int MaCTGH { get; set; }
-        public string MaGH { get; set; }
+        public int MaGH { get; set; }
         public string MaSP { get; set; }
         public int SoLuong { get; set; }
     

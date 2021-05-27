@@ -14,7 +14,7 @@ namespace Team9_winxshop.Models
     
     public partial class ChiTietThanhToan
     {
-        public string MaDH { get; set; }
+        public int MaDH { get; set; }
         public int MaHTTT { get; set; }
         public int SoTien { get; set; }
     

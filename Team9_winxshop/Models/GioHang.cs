@@ -20,7 +20,7 @@ namespace Team9_winxshop.Models
             this.ChiTietGioHangs = new HashSet<ChiTietGioHang>();
         }
     
-        public string MaGH { get; set; }
+        public int MaGH { get; set; }
         public string Email { get; set; }
         public int TongTien { get; set; }
         public System.DateTime NgayTao { get; set; }
