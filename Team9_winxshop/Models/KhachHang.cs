@@ -23,7 +23,7 @@ namespace Team9_winxshop.Models
     
         public string Email { get; set; }
         public string HoTen { get; set; }
-        public int GioiTinh { get; set; }
+        public string GioiTinh { get; set; }
         public string SDT_KH { get; set; }
         public string DiaChi { get; set; }
         public System.DateTime NgaySinh { get; set; }

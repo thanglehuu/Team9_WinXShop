@@ -27,7 +27,8 @@ namespace Team9_winxshop.Controllers
         public ActionResult Search(string keyword)
         {
             var model = db.SanPhams.ToList();
-            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
+            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())
+                                || p.LoaiSanPham.TenLoaiSP.ToLower().Contains(keyword.ToLower())).ToList();
             ViewBag.Keyword = keyword;
             return View("Index2", model);
 
@@ -36,7 +37,9 @@ namespace Team9_winxshop.Controllers
         public ActionResult Search2(string keyword)
         {
             var model = db.SanPhams.ToList();
-            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower()) || p.MaSP.ToLower().Contains(keyword.ToLower())).ToList();
+            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())
+                                || p.MaSP.ToLower().Contains(keyword.ToLower())
+                                || p.LoaiSanPham.TenLoaiSP.ToLower().Contains(keyword.ToLower())).ToList();
             ViewBag.Keyword = keyword;
             return View("Index", model);
 
@@ -144,15 +147,11 @@ namespace Team9_winxshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            using (var scope = new TransactionScope())
-            {
-                var model = db.SanPhams.Find(id);
-                db.SanPhams.Remove(model);
-                db.SaveChanges();
+            var model = db.SanPhams.Find(id);
+            db.SanPhams.Remove(model);
+            db.SaveChanges();
 
-                scope.Complete();
-                return RedirectToAction("Index");
-            }
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

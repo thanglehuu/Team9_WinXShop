@@ -27,7 +27,6 @@ namespace Team9_winxshop.Models
         public string DiaChiNguoiNhan { get; set; }
         public string SDT { get; set; }
         public int TongTien { get; set; }
-        public System.DateTime NgayGiaoHang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }

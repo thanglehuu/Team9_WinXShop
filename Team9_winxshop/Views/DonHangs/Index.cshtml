@@ -1,0 +1,280 @@
+﻿@model IEnumerable<Team9_winxshop.Models.DonHang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    winxshop@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <form action="@Url.Action("Search", "DonHangs")" method="get">
+                        <div class="advanced-search" style="width: 500px;">
+                            <div class="input-group">
+                                <input type="text" name="Keyword" placeholder="Nhập đơn hàng bạn muốn tìm kiếm">
+                                <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<h2 style="padding: 8px; border-bottom: 1px solid #e7ab3c">Danh sách đơn hàng</h2>
+<body>
+    <h5 style="padding: 10px">Đơn hàng đang chờ xử lý</h5>
+    <table class="table">
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Email khách hàng
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.TrangThaiDonHang.TrangThai == "Đang chờ xử lý")
+            {
+                <tr>
+                    <td>
+                        @item.MaDH
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.DiaChiNguoiNhan
+                    </td>
+                    <td>
+                        @item.SDT
+                    </td>
+                    <td>
+                        @item.TongTien.ToString("N0")@("đ")
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Search", "ChiTietDonHangs", new { keyword = item.MaDH })">
+                            Xem chi tiết đơn hàng
+                        </a> <br />
+                        <a href="@Url.Action("Edit", new { id = item.MaDH })">
+                            Cập nhật trạng thái đơn hàng
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    <h5 style="padding: 10px; border-top: 1px solid #e7ab3c">Đơn hàng đã xác nhận</h5>
+    <table class="table">
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Email khách hàng
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.TrangThaiDonHang.TrangThai == "Đã xác nhận")
+            {
+                <tr>
+                    <td>
+                        @item.MaDH
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.DiaChiNguoiNhan
+                    </td>
+                    <td>
+                        @item.SDT
+                    </td>
+                    <td>
+                        @item.TongTien.ToString("N0")@("đ")
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Search", "ChiTietDonHangs", new { keyword = item.MaDH })">
+                            Xem chi tiết đơn hàng
+                        </a> <br />
+                        <a href="@Url.Action("Edit", new { id = item.MaDH })">
+                            Cập nhật trạng thái đơn hàng
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    <h5 style="padding: 10px; border-top: 1px solid #e7ab3c">Đơn hàng đã hoàn thành</h5>
+    <table class="table">
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Email khách hàng
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.TrangThaiDonHang.TrangThai == "Hoàn thành")
+            {
+                <tr>
+                    <td>
+                        @item.MaDH
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.DiaChiNguoiNhan
+                    </td>
+                    <td>
+                        @item.SDT
+                    </td>
+                    <td>
+                        @item.TongTien.ToString("N0")@("đ")
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Search", "ChiTietDonHangs", new { keyword = item.MaDH })">
+                            Xem chi tiết đơn hàng
+                        </a> <br />
+                        <a href="@Url.Action("Edit", new { id = item.MaDH })">
+                            Cập nhật trạng thái đơn hàng
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    <h5 style="padding: 10px; border-top: 1px solid #e7ab3c">Đơn hàng đã hủy</h5>
+    <table class="table">
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Email khách hàng
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Tổng tiền
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.TrangThaiDonHang.TrangThai == "Hủy")
+            {
+                <tr>
+                    <td>
+                        @item.MaDH
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.DiaChiNguoiNhan
+                    </td>
+                    <td>
+                        @item.SDT
+                    </td>
+                    <td>
+                        @item.TongTien.ToString("N0")@("đ")
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Search", "ChiTietDonHangs", new { keyword = item.MaDH })">
+                            Xem chi tiết đơn hàng
+                        </a> <br />
+                        <a href="@Url.Action("Edit", new { id = item.MaDH })">
+                            Cập nhật trạng thái đơn hàng
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</body>

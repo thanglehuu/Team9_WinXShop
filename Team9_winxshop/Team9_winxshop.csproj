@@ -173,6 +173,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetRoleUserController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
+    <Compile Include="Controllers\ChiTietDonHangsController.cs" />
+    <Compile Include="Controllers\DonHangsController.cs" />
     <Compile Include="Controllers\GioHangsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -317,6 +319,7 @@
     <Content Include="assets\img\products\HDNAM01.jpg" />
     <Content Include="assets\img\products\HDNU01.jpg" />
     <Content Include="assets\img\products\man-large.jpg" />
+    <Content Include="assets\img\products\QNAM01.jpg" />
     <Content Include="assets\img\products\QNU01.jpg" />
     <Content Include="assets\img\products\women-large.jpg" />
     <Content Include="assets\img\select-product-1.jpg" />
@@ -395,10 +398,21 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\SanPhams\Index2.cshtml" />
     <Content Include="Views\GioHangs\Create.cshtml" />
-    <Content Include="Views\GioHangs\Delete.cshtml" />
     <Content Include="Views\GioHangs\Details.cshtml" />
     <Content Include="Views\GioHangs\Edit.cshtml" />
     <Content Include="Views\GioHangs\Index.cshtml" />
+    <Content Include="Views\GioHangs\CheckOut.cshtml" />
+    <Content Include="Views\GioHangs\Success.cshtml" />
+    <Content Include="Views\ChiTietDonHangs\Create.cshtml" />
+    <Content Include="Views\ChiTietDonHangs\Delete.cshtml" />
+    <Content Include="Views\ChiTietDonHangs\Details.cshtml" />
+    <Content Include="Views\ChiTietDonHangs\Edit.cshtml" />
+    <Content Include="Views\ChiTietDonHangs\Index.cshtml" />
+    <Content Include="Views\DonHangs\Delete.cshtml" />
+    <Content Include="Views\DonHangs\Details.cshtml" />
+    <Content Include="Views\DonHangs\Edit.cshtml" />
+    <Content Include="Views\DonHangs\Index.cshtml" />
+    <Content Include="Views\SanPhams\Delete.cshtml" />
     <None Include="Views\Shared\winxshop.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -440,7 +454,6 @@
     <Content Include="Views\AspNetRoles\Index.cshtml" />
     <Content Include="Views\AspNetRoleUser\Create.cshtml" />
     <Content Include="Views\SanPhams\Create.cshtml" />
-    <Content Include="Views\SanPhams\Delete.cshtml" />
     <Content Include="Views\SanPhams\Details.cshtml" />
     <Content Include="Views\SanPhams\Edit.cshtml" />
     <Content Include="Views\SanPhams\Index.cshtml" />

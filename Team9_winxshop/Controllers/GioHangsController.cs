@@ -71,27 +71,59 @@ namespace Team9_winxshop.Controllers
         }
 
         // GET: GioHangs/Edit/5
-        public ActionResult UpdateCart(int quantity)
+        public ActionResult UpdateCart(int[] quantity)
         {
             for(int i = 0; i < ShoppingCart.Count; i++)
             {
-                ShoppingCart[i].SoLuong = quantity;
+                ShoppingCart[i].SoLuong = quantity[i];
             }
             return RedirectToAction("Index");
         }
 
-        // GET: GioHangs/Delete/5
+        public ActionResult CheckOut()
+        {
+            return View(ShoppingCart);
+        }
+
+        public ActionResult Success(FormCollection frc)
+        {
+            DonHang donhang = new DonHang
+            {
+                Email = frc["khEmail"],
+                MaTT = 1,
+                DiaChiNguoiNhan = frc["khDiachi"],
+                SDT = frc["khSodt"],
+                TongTien = Int32.Parse(frc["TTien"]),
+            };
+            db.DonHangs.Add(donhang);
+            db.SaveChanges();
+
+            foreach (var billdetail in ShoppingCart)
+            {
+                ChiTietDonHang ctdh = new ChiTietDonHang()
+                {
+                    MaDH = donhang.MaDH,
+                    MaSP = billdetail.SanPham.MaSP,
+                    SoLuong = billdetail.SoLuong,
+                };
+                db.ChiTietDonHangs.Add(ctdh);
+                db.SaveChanges();
+            }
+            ShoppingCart.Clear();
+            return View("Success");
+        }
+
         public ActionResult Delete(string productId)
         {
-            foreach(var billdetail in ShoppingCart)
+            foreach (var billdetail in ShoppingCart)
             {
-                if(billdetail.MaSP == productId)
+                if (billdetail.MaSP == productId)
                 {
                     ShoppingCart.Remove(billdetail);
                     break;
                 }
             }
-            
+
             return RedirectToAction("Index");
         }
 

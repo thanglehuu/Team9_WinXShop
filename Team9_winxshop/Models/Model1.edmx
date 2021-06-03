@@ -96,7 +96,6 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="DiaChiNguoiNhan" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="SDT" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TongTien" Type="int" Nullable="false" />
-          <Property Name="NgayGiaoHang" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="GioHang">
           <Key>
@@ -120,7 +119,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           </Key>
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="GioiTinh" Type="int" Nullable="false" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="SDT_KH" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="DiaChi" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NgaySinh" Type="date" Nullable="false" />
@@ -493,7 +492,6 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="DiaChiNguoiNhan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TongTien" Type="Int32" Nullable="false" />
-          <Property Name="NgayGiaoHang" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK_ChiTietDonHang_DonHang" FromRole="DonHang" ToRole="ChiTietDonHang" />
           <NavigationProperty Name="ChiTietThanhToans" Relationship="Self.FK_ChiTietThanhToan_DonHang" FromRole="DonHang" ToRole="ChiTietThanhToan" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK_DonHang_KhachHang" FromRole="DonHang" ToRole="KhachHang" />
@@ -524,7 +522,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           </Key>
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GioiTinh" Type="Int32" Nullable="false" />
+          <Property Name="GioiTinh" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SDT_KH" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
@@ -875,7 +873,6 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
                 <ScalarProperty Name="DiaChiNguoiNhan" ColumnName="DiaChiNguoiNhan" />
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
-                <ScalarProperty Name="NgayGiaoHang" ColumnName="NgayGiaoHang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
