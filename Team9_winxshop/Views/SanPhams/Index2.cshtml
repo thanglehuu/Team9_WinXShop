@@ -31,12 +31,12 @@
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                         {
                             @Html.AntiForgeryToken()
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Log off</a>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
                         }
                     }
                     else
                     {
-                        <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                        <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
                     }
                 </div>
             </div>
@@ -47,7 +47,7 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="@Url.Action("Index", "Home")">
-                                <img src="@Url.Content("~/assets/img/logo.png")" alt="">
+                                <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
                             </a>
                         </div>
                     </div>
@@ -80,26 +80,20 @@
                     <div class="depart-btn">
                         <i class="ti-menu"></i>
                         <span>All departments</span>
-                        <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                        </ul>
+                        <form action="@Url.Action("Search", "SanPhams")" method="get">
+                            <ul class="depart-hover">
+                                <li><button type="submit" name="Keyword" value="Nữ" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="Nam" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                        <li class="active"><a href="@Url.Action("Index2", "SanPhams")">Shop</a></li>
-                        <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                        <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-                        <li>
-                            <a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="@Url.Action("Login", "Account")">Login</a></li>
-                                <li><a href="@Url.Action("Register", "Account")">Register</a></li>
-                                <li><a href="@Url.Action("Index", "GioHangs")">Shopping Cart</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                        <li class="active"><a href="@Url.Action("Index2", "SanPhams")">Sản phẩm</a></li>
+                        <li><a href="@Url.Action("About", "Home")">Về Winxshop</a></li>
+                        <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
@@ -112,8 +106,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
+                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Trang chủ</a>
+                        <span>Sản phẩm</span>
                     </div>
                 </div>
             </div>
@@ -124,12 +118,12 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
                     <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
+                        <h4 class="fw-title">Danh mục sản phẩm</h4>
                         <form action="@Url.Action("Search", "SanPhams")" method="get">
                             <ul class="filter-catagories">
-                                <li><a href="#">Men</a></li>
-                                <li><a href="#">Women</a></li>
-                                <li><a href="#">Accessories</a></li>
+                                <li><button type="submit" name="Keyword" value="Nam" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Nam</button></li>
+                                <li><button type="submit" name="Keyword" value="Nữ" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="Phụ kiện" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Phụ kiện</button></li>
                             </ul>
                         </form>
                     </div>
@@ -146,7 +140,7 @@
                                                 <img src="@Url.Content(product.HinhAnh)" alt="">
                                             </a>
                                             <ul>
-                                                <li class="quick-view"><a href="@Url.Action("Details", new { id = product.MaSP })">+ Quick View</a></li>
+                                                <li class="quick-view" style="background-color: #e7ab3c;"><a href="@Url.Action("Details", "SanPhams",new { id = product.MaSP })" style="color: #ffffff">+ Quick View</a></li>
                                             </ul>
                                         </div>
                                         <div class="pi-text">
@@ -175,7 +169,7 @@
                 <div class="col-lg-3">
                     <div class="footer-left">
                         <div class="footer-logo">
-                            <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/assets/img/footer-logo.png")" alt=""></a>
+                            <a href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/assets/img/logo.jpg")" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -183,8 +177,8 @@
                     <div class="footer-widget">
                         <h5>Information</h5>
                         <ul>
-                            <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                            <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                            <li><a href="@Url.Action("About", "Home")">Về Winxshop</a></li>
+                            <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>

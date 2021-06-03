@@ -23,12 +23,12 @@
                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                     {
                         @Html.AntiForgeryToken()
-                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Log off</a>
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
                     }
                 }
                 else
                 {
-                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
                 }
             </div>
         </div>
@@ -120,7 +120,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" style="border-color: #e7ab3c;" /> |
-                @Html.ActionLink("Back to List", "Index")
+                @Html.ActionLink("Quay lại danh sách", "Index")
             </div>
         </div>
     </div>

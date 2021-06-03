@@ -24,12 +24,12 @@
                         using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                         {
                             @Html.AntiForgeryToken()
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Log off</a>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
                         }
                     }
                     else
                     {
-                        <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                        <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
                     }
                 </div>
             </div>
@@ -40,7 +40,7 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="@Url.Action("Index", "Home")">
-                                <img src="@Url.Content("~/assets/img/logo.png")" alt="">
+                                <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
                             </a>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                             <li class="cart-icon">
-                                <a href="#">
+                                <a href="@Url.Action("Index", "GioHangs")">
                                     <i class="icon_bag_alt"></i>
                                     <span>@((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString())</span>
                                 </a>
@@ -73,26 +73,20 @@
                     <div class="depart-btn">
                         <i class="ti-menu"></i>
                         <span>All departments</span>
-                        <ul class="depart-hover">
-                            <li class="active"><a href="#">Women’s Clothing</a></li>
-                            <li><a href="#">Men’s Clothing</a></li>
-                        </ul>
+                        <form action="@Url.Action("Search", "SanPhams")" method="get">
+                            <ul class="depart-hover">
+                                <li><button type="submit" name="Keyword" value="Nữ" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="Nam" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
+                            </ul>
+                        </form>
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                        <li class="active"><a href="@Url.Action("Index2", "SanPhams")">Shop</a></li>
-                        <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                        <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-                        <li>
-                            <a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="@Url.Action("Login", "Account")">Login</a></li>
-                                <li><a href="@Url.Action("Register", "Account")">Register</a></li>
-                                <li><a href="@Url.Action("Index", "GioHangs")">Shopping Cart</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                        <li class="active"><a href="@Url.Action("Index2", "SanPhams")">Sản phẩm</a></li>
+                        <li><a href="@Url.Action("About", "Home")">Về Winxshop</a></li>
+                        <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
@@ -104,8 +98,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Home</a>
-                        <a href="@Url.Action("Index2", "SanPhams")"> Shop</a>
+                        <a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> Trang chủ</a>
+                        <a href="@Url.Action("Index2", "SanPhams")"> Sản phẩm</a>
                         <span>@Model.TenSP</span>
                     </div>
                 </div>
@@ -140,20 +134,8 @@
                                 </div>
                                 <div class="pd-size-choose">
                                     <div class="sc-item">
-                                        <input type="radio" id="sm-size">
-                                        <label for="sm-size">S</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="md-size">
-                                        <label for="md-size">M</label>
-                                    </div>
-                                    <div class="sc-item">
-                                        <input type="radio" id="lg-size">
-                                        <label for="lg-size">L</label>
-                                    </div>
-                                    <div class="sc-item">
                                         <input type="radio" id="xl-size">
-                                        <label for="xl-size">XL</label>
+                                        <label for="xl-size">@Model.Size</label>
                                     </div>
                                 </div>
                                 <form action="@Url.Action("Create", "GioHangs")" method="post">
@@ -270,8 +252,8 @@
                     <div class="footer-widget">
                         <h5>Information</h5>
                         <ul>
-                            <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                            <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                            <li><a href="@Url.Action("About", "Home")">Về Winxshop/a></li>
+                            <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>

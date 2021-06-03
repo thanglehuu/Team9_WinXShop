@@ -1,8 +1,10 @@
-﻿@model Team9_winxshop.Models.SanPham
+﻿@model Team9_winxshop.Models.ChiTietDonHang
 
 @{
-     ViewBag.Title = "Delete";
+    ViewBag.Title = "Edit";
 }
+
+<!DOCTYPE html>
 
 <header class="header-section">
     <div class="header-top">
@@ -47,18 +49,44 @@
         </div>
     </div>
 </header>
-<body>
-    <h3>Bạn có chắc muốn xóa sản phẩm này không ?</h3>
-    <div>
-        <h4 style="padding: 12px">Sản phẩm @Model.TenSP</h4>
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" style="border-color: #e7ab3c;" /> |
-                @Html.ActionLink("Back to List", "Index")
+<h2>Chỉnh sửa chi tiết đơn hàng</h2>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.MaCTDH)
+            @Html.HiddenFor(model => model.MaDH)
+            @Html.HiddenFor(model => model.MaSP)
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Tên sản phẩm</label>
+                <div class="col-md-10">
+                    @Model.SanPham.TenSP
+                </div>
             </div>
-        }
-    </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Số lượng</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" style="border-color: #e7ab3c;" /> |
+                    @Html.ActionLink("Quay lại danh sách", "Index")
+                </div>
+            </div>
+        </div>
+    }
 </body>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

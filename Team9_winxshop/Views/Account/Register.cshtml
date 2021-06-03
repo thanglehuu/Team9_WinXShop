@@ -3,29 +3,15 @@
     ViewBag.Title = "Register";
 }
 
-<header class="header-section">
-    <div class="container">
-        <div class="inner-header">
-            <div class="row">
-                <div class="col-lg-2 col-md-2">
-                    <div class="logo">
-                        <a href="@Url.Action("Index", "Home")">
-                            <img src="@Url.Content("~/assets/img/logo.png")" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+
 
 <div class="breacrumb-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i> Login</a>
-                    <span>Register</span>
+                    <a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                    <span>Đăng ký</span>
                 </div>
             </div>
         </div>
@@ -39,34 +25,32 @@
                 <div class="col-lg-6 offset-lg-3">
                     <div class="register-form">
                         @Html.AntiForgeryToken()
-                        <h2>
-                            Register
-                        </h2>
+                        <h2>Đăng ký</h2>
                         <hr />
                         @Html.ValidationSummary("", new { @class = "text-danger" })
                         <form action="#">
                             <div class="group-input">
-                                <label for="username">Email address *</label>
+                                <label for="username">Email *</label>
                                 <div id="username">
                                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="group-input">
-                                <label for="pass">Password *</label>
+                                <label for="pass">Mật khẩu *</label>
                                 <div id="pass">
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="group-input">
-                                <label for="con-pass">Confirm Password *</label>
+                                <label for="con-pass">Nhập lại mật khẩu *</label>
                                 <div id="con-pass">
                                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                                 </div>
                             </div>
-                            <button type="submit" class="site-btn register-btn" style="border-radius: 5px; margin-top: 20px; padding-left: 43.5%; padding-right: 43.5%">REGISTER</button>
+                            <button type="submit" class="site-btn register-btn" style="border-radius: 5px; margin-top: 20px; padding-left: 43.5%; padding-right: 43.5%">Đăng ký</button>
                         </form>
                         <div class="switch-login">
-                            <a href="@Url.Action("Login", "Account")" class="or-login">Or Login</a>
+                            <a href="@Url.Action("Login", "Account")" class="or-login">Đăng nhập</a>
                         </div>
                     </div>
                 </div>
