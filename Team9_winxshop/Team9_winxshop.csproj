@@ -258,6 +258,7 @@
     <Content Include="assets\fonts\ElegantIcons.svg" />
     <Content Include="assets\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\fonts\themify.svg" />
+    <Content Include="assets\img\About1.jpg" />
     <Content Include="assets\img\banner-1.jpg" />
     <Content Include="assets\img\banner-2.jpg" />
     <Content Include="assets\img\blog\blog-1.jpg" />

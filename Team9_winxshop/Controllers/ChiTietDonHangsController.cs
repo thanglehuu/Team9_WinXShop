@@ -45,6 +45,14 @@ namespace Team9_winxshop.Controllers
             return View(chiTietDonHang);
         }
 
+        private void ValidateProduct(ChiTietDonHang sanPham)
+        {
+            if (sanPham.SoLuong < 0)
+            {
+                ModelState.AddModelError("SoLuong", "Số lượng phải lớn hơn 0");
+            }
+        }
+
         // GET: ChiTietDonHangs/Create
         public ActionResult Create()
         {
@@ -75,10 +83,6 @@ namespace Team9_winxshop.Controllers
         // GET: ChiTietDonHangs/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
             if (chiTietDonHang == null)
             {
@@ -96,6 +100,7 @@ namespace Team9_winxshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaCTDH,MaDH,MaSP,SoLuong")] ChiTietDonHang chiTietDonHang)
         {
+            ValidateProduct(chiTietDonHang);
             if (ModelState.IsValid)
             {
                 db.Entry(chiTietDonHang).State = EntityState.Modified;
