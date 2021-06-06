@@ -26,14 +26,20 @@ namespace Team9_winxshop.Controllers
         [AllowAnonymous]
         public ActionResult Search(string keyword)
         {
-            var model = db.SanPhams.ToList();
-            model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())
-                                || p.Mau.ToLower().Contains(keyword.ToLower())
-                                || p.MaLoaiSP.ToLower().Contains(keyword.ToLower())
-                                || p.LoaiSanPham.TenLoaiSP.ToLower().Contains(keyword.ToLower())).ToList();
-            ViewBag.Keyword = keyword;
-            return View("Index2", model);
-
+            if( keyword.Trim(' ') == "")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var model = db.SanPhams.ToList();
+                model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())
+                                    || p.Mau.ToLower().Contains(keyword.ToLower())
+                                    || p.MaLoaiSP.ToLower().Contains(keyword.ToLower())
+                                    || p.LoaiSanPham.TenLoaiSP.ToLower().Contains(keyword.ToLower())).ToList();
+                ViewBag.Keyword = keyword;
+                return View("Index2", model);
+            }
         }
 
         public ActionResult Search2(string keyword)
