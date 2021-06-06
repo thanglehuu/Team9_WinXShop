@@ -49,7 +49,7 @@
                     <form action="@Url.Action("Search", "SanPhams")" method="get">
                         <div class="advanced-search" style="width: 500px;">
                             <div class="input-group">
-                                <input type="text" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                                <input type="text" maxlength="30" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
                                 <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
                             </div>
                         </div>
@@ -74,10 +74,12 @@
                 <div class="depart-btn">
                     <i class="ti-menu"></i>
                     <span>All departments</span>
-                    <ul class="depart-hover">
-                        <li class="active"><a href="#">Women’s Clothing</a></li>
-                        <li><a href="#">Men’s Clothing</a></li>
-                    </ul>
+                    <form action="@Url.Action("Search", "SanPhams")" method="get">
+                        <ul class="depart-hover">
+                            <li><button type="submit" name="Keyword" value="NU" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
+                            <li><button type="submit" name="Keyword" value="NAM" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
+                        </ul>
+                    </form>
                 </div>
             </div>
             <nav class="nav-menu mobile-menu">
