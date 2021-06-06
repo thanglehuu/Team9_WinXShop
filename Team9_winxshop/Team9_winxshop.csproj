@@ -329,12 +329,13 @@
     <Content Include="assets\img\products\HDNU01.jpg" />
     <Content Include="assets\img\products\man-large.jpg" />
     <Content Include="assets\img\products\KINH01.jpg" />
+    <Content Include="assets\img\products\NON01.jpg" />
+    <Content Include="assets\img\products\NON02.jpg" />
+    <Content Include="assets\img\products\NON03.jpg" />
     <Content Include="assets\img\products\QNAM02.jpg" />
     <Content Include="assets\img\products\QNU02.jpg" />
     <Content Include="assets\img\products\QNU03.jpg" />
     <Content Include="assets\img\products\QNU04.jpg" />
-    <Content Include="assets\img\products\SWNAM01.jpg" />
-    <Content Include="assets\img\products\VONG01.jpg" />
     <Content Include="assets\img\products\NHAN01.jpg" />
     <Content Include="assets\img\products\QNAM01.jpg" />
     <Content Include="assets\img\products\QNU01.jpg" />

@@ -140,13 +140,23 @@
                                 </div>
                                 <form action="@Url.Action("Create", "GioHangs")" method="post">
                                     <input type="hidden" name="productId" value="@Model.MaSP" />
-                                    <div class="pd-desc">
-                                        <h4>@Model.DonGia.ToString("N0")@("đ")</h4>
-                                    </div>
-                                    <div class="quantity">
-                                        <input name="quantity" type="number" value="1" min="1" max="@Model.SoLuong"/>
-                                        <input type="submit" class="primary-btn pd-cart" value="Thêm vào giỏ hàng" style="padding-right: 20px; padding-left: 20px; border-style: none; margin-left: 10px;" />
-                                    </div>
+                                    @if (Model.SoLuong != 0)
+                                    {
+                                        <div class="pd-desc">
+                                            <h4>@Model.DonGia.ToString("N0")@("đ")</h4>
+                                        </div>
+                                        <div class="quantity">
+                                            <input name="quantity" type="number" value="1" min="1" max="@Model.SoLuong" />
+                                            <input type="submit" class="primary-btn pd-cart" value="Thêm vào giỏ hàng" style="padding-right: 20px; padding-left: 20px; border-style: none; margin-left: 10px;" />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="pd-desc">
+                                            <h4 style="font-size: 20px">Sản phẩm này vẫn chưa được mở bán</h4>
+                                        </div>
+                                    }
+
                                 </form>
                             </div>
                         </div>
