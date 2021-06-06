@@ -28,6 +28,8 @@ namespace Team9_winxshop.Controllers
         {
             var model = db.SanPhams.ToList();
             model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())
+                                || p.Mau.ToLower().Contains(keyword.ToLower())
+                                || p.MaLoaiSP.ToLower().Contains(keyword.ToLower())
                                 || p.LoaiSanPham.TenLoaiSP.ToLower().Contains(keyword.ToLower())).ToList();
             ViewBag.Keyword = keyword;
             return View("Index2", model);
@@ -95,7 +97,7 @@ namespace Team9_winxshop.Controllers
             {
                 ModelState.AddModelError("DonGia", "Đơn giá phải lớn hơn 0");
             }
-            if(sanPham.SoLuong <0)
+            if(sanPham.SoLuong < 0)
             {
                 ModelState.AddModelError("SoLuong", "Số lượng phải lớn hơn 0");
             }

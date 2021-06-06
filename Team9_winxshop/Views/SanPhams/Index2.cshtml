@@ -82,8 +82,8 @@
                         <span>All departments</span>
                         <form action="@Url.Action("Search", "SanPhams")" method="get">
                             <ul class="depart-hover">
-                                <li><button type="submit" name="Keyword" value="Nữ" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
-                                <li><button type="submit" name="Keyword" value="Nam" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
+                                <li><button type="submit" name="Keyword" value="NU" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="NAM" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
                             </ul>
                         </form>
                     </div>
@@ -121,14 +121,22 @@
                         <h4 class="fw-title">Danh mục sản phẩm</h4>
                         <form action="@Url.Action("Search", "SanPhams")" method="get">
                             <ul class="filter-catagories">
-                                <li><button type="submit" name="Keyword" value="Nam" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Nam</button></li>
-                                <li><button type="submit" name="Keyword" value="Nữ" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Nữ</button></li>
-                                <li><button type="submit" name="Keyword" value="Phụ kiện" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Phụ kiện</button></li>
+                                <li><button type="submit" name="Keyword" value="Áo nam" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Áo nam</button></li>
+                                <li><button type="submit" name="Keyword" value="Áo nữ" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Áo nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="Quần nam" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Quần nam</button></li>
+                                <li><button type="submit" name="Keyword" value="Quần nữ" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Quần nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="Giầy nam" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Giầy nam</button></li>
+                                <li><button type="submit" name="Keyword" value="Giầy nữ" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Giầy nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="Kính" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Kính mát</button></li>
+                                <li><button type="submit" name="Keyword" value="Nón" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Nón</button></li>
+                                <li><button type="submit" name="Keyword" value="Nhẫn" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Nhẫn</button></li>
+                                <li><button type="submit" name="Keyword" value="Đồng hồ" style="display: block; font-size: 20px; color: #e7ab3c;border: none; background-color: #fff">Đồng hồ</button></li>
                             </ul>
                         </form>
                     </div>
                 </div>
                 <div class="col-lg-9 order-1 order-lg-2">
+                    <h3 style="color: #252525; padding-bottom: 15px; font-weight: 700;">Danh sách sản phẩm</h3>
                     <div class="product-list">
                         <div class="row">
                             @foreach (var product in Model)
