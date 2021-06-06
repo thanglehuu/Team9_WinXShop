@@ -15,6 +15,7 @@ namespace Team9_winxshop.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private CT25Team19Entities db = new CT25Team19Entities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -86,7 +87,7 @@ namespace Team9_winxshop.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Đăng nhập thất bại");
                     return View(model);
             }
         }
@@ -147,7 +148,7 @@ namespace Team9_winxshop.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, FormCollection frc)
         {
             if (ModelState.IsValid)
             {
@@ -155,6 +156,18 @@ namespace Team9_winxshop.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    KhachHang khachhang = new KhachHang
+                    {
+                        Email = model.Email,
+                        HoTen = frc["khHoTen"],
+                        GioiTinh = frc["khGioiTinh"],
+                        SDT_KH = frc["khSdt"],
+                        DiaChi = frc["khDiaChi"],
+                        NgaySinh = Convert.ToDateTime(frc["khNgaySinh"]),
+                    };
+                    db.KhachHangs.Add(khachhang);
+                    db.SaveChanges();
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

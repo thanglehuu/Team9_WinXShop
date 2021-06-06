@@ -82,8 +82,8 @@
                         <span>All departments</span>
                         <form action="@Url.Action("Search", "SanPhams")" method="get">
                             <ul class="depart-hover">
-                                <li><button type="submit" name="Keyword" value="Nữ" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
-                                <li><button type="submit" name="Keyword" value="Nam" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
+                                <li><button type="submit" name="Keyword" value="NU" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="NAM" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
                             </ul>
                         </form>
                     </div>
@@ -130,7 +130,7 @@
                         <img src="@Url.Content("~/assets/img/banner-3.jpg")" alt="">
                         <div class="inner-text">
                             <form action="@Url.Action("Search", "SanPhams")" method="get">
-                                <button type="submit" name="Keyword" value="Phụ kiện" style="color: #252525; font-weight: 700; font-size: 20px;padding: 12px 28px; background: #ffffff; border-style: none">PHỤ KIỆN</button>
+                                <button type="submit" name="Keyword" value="PKIEN" style="color: #252525; font-weight: 700; font-size: 20px;padding: 12px 28px; background: #ffffff; border-style: none">PHỤ KIỆN</button>
                             </form>
                         </div>
                     </div>
@@ -274,7 +274,9 @@
                 <div class="col-lg-3">
                     <div class="footer-left">
                         <div class="footer-logo">
-                            <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                            <a href=".@Url.Action("Index", "Home")">
+                                <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                            </a>
                         </div>
                     </div>
                 </div>

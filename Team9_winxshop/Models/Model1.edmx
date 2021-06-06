@@ -138,7 +138,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="MaSP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="MaLoaiSP" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TenSP" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Size" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Size" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="SoLuong" Type="int" Nullable="false" />
           <Property Name="DonGia" Type="int" Nullable="false" />
           <Property Name="Mau" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -544,7 +544,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="MaSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaLoaiSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TenSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Size" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Size" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SoLuong" Type="Int32" Nullable="false" />
           <Property Name="DonGia" Type="Int32" Nullable="false" />
           <Property Name="Mau" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
