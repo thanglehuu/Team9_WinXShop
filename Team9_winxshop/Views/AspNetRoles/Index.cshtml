@@ -1,8 +1,99 @@
 ﻿@model IEnumerable<Team9_winxshop.Models.AspNetRole>
-
 @{
     ViewBag.Title = "Index";
 }
+
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    winxshop@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href=".@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <form action="@Url.Action("Search", "SanPhams")" method="get">
+                        <div class="advanced-search" style="width: 500px;">
+                            <div class="input-group">
+                                <input type="text" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                                <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <div class="container">
+            <div class="nav-depart">
+                <div class="depart-btn">
+                    <i class="ti-menu"></i>
+                    <span>All departments</span>
+                    <form action="@Url.Action("Search", "SanPhams")" method="get">
+                        <ul class="depart-hover">
+                            <li><button type="submit" name="Keyword" value="Nữ" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
+                            <li><button type="submit" name="Keyword" value="Nam" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <nav class="nav-menu mobile-menu">
+                <ul>
+                    <li class="active"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                    <li><a href="@Url.Action("Index2", "SanPhams")">Sản phẩm</a></li>
+                    <li><a href="@Url.Action("About", "Home")">Về Winxshop</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </div>
+</header>
+
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                    <span>Đăng nhập</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <h2>Roles</h2>
 
@@ -12,33 +103,34 @@
 <table class="table">
     <tr>
         <th>Role</th>
-        <th>User</th>
+        <th>Email</th>
         <th></th>
     </tr>
 
-@foreach (var role in Model) {
-    <tr>
-        <td>
-            @role.Name
-        </td>
-        <td></td>
-        <td>
-            <a href="@Url.Action("Edit", new { id = role.Id })">Edit</a> |
-            <a href="@Url.Action("Delete", new { id = role.Id })">Delete</a> |
-            <a href="@Url.Action("Create", "AspNetRoleUser", new { RoleId = role.Id })">Add User</a>
-        </td>
-    </tr>
-
-    foreach (var user in role.AspNetUsers)
+    @foreach (var role in Model)
     {
         <tr>
+            <td style="color: #e7ab3c;">
+                @role.Name
+            </td>
             <td></td>
-            <td>@user.UserName</td>
             <td>
-                <a href="@Url.Action("Delete", "AspNetRoleUser", new { roleId = role.Id, userId = user.Id })">Delete</a>
+                <a href="@Url.Action("Edit", new { id = role.Id })">Edit</a> |
+                <a href="@Url.Action("Delete", new { id = role.Id })">Delete</a> |
+                <a href="@Url.Action("Create", "AspNetRoleUser", new { RoleId = role.Id })">Add User</a>
             </td>
         </tr>
+
+        foreach (var user in role.AspNetUsers)
+        {
+            <tr>
+                <td></td>
+                <td>@user.UserName</td>
+                <td>
+                    <a href="@Url.Action("Delete", "AspNetRoleUser", new { roleId = role.Id, userId = user.Id })">Delete</a>
+                </td>
+            </tr>
+        }
     }
-}
 
 </table>
