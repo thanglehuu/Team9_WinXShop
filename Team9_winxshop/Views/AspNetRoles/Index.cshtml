@@ -116,7 +116,7 @@
             <td></td>
             <td>
                 <a href="@Url.Action("Edit", new { id = role.Id })">Edit</a> |
-                <a href="@Url.Action("Delete", new { id = role.Id })">Delete</a> |
+                <a href="@Url.Action("Delete", new { id = role.Id})">Delete</a> |
                 <a href="@Url.Action("Create", "AspNetRoleUser", new { RoleId = role.Id })">Add User</a>
             </td>
         </tr>
@@ -127,7 +127,7 @@
                 <td></td>
                 <td>@user.UserName</td>
                 <td>
-                    <a href="@Url.Action("Delete", "AspNetRoleUser", new { roleId = role.Id, userId = user.Id })">Delete</a>
+                    <a href="@Url.Action("Delete", "AspNetRoleUser", new { roleId = role.Id, userId = user.Id, userEmail = user.Email })">Delete</a>
                 </td>
             </tr>
         }
