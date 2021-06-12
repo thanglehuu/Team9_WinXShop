@@ -59,24 +59,24 @@
 
         <div class="row">
             <div class="form-group col-md-6">
-                <label class = "control-label col-md-3">Mã sản phẩm</label>
+                <label class = "control-label col-md-3">Mã sản phẩm <span style="color: red">*</span></label>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                     @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group col-md-6">
-                <label class = "control-label col-md-4">Loại sản phẩm</label>
+                <label class = "control-label col-md-4">Loại sản phẩm <span style="color: red">*</span></label>
                 <div class="col-md-10" style="max-width: 66%">
-                    @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "form-control", @required = "required" })
                     @Html.ValidationMessageFor(model => model.MaLoaiSP, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Tên sản phẩm</label>
+            <label class = "control-label col-md-2">Tên sản phẩm <span style="color: red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
@@ -84,7 +84,7 @@
         </div>
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Size</label>
+            <label class = "control-label col-md-2">Size <span style="color: red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
@@ -92,7 +92,7 @@
         </div>
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Số lượng</label>
+            <label class = "control-label col-md-2">Số lượng <span style="color: red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
@@ -100,10 +100,10 @@
         </div>
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Đơn giá</label>
+            <label class = "control-label col-md-2">Đơn giá <span style="color: red">*</span></label>
             <div class="col-md-10">
                 <div class="input-group">
-                    @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0, max = Model.SoLuong } })
+                    @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
                     <div class="input-group-append">
                         <span class="input-group-text">vnđ</span>
                     </div>
@@ -112,7 +112,7 @@
         </div>
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Màu</label>
+            <label class = "control-label col-md-2">Màu <span style="color: red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Mau, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.Mau, "", new { @class = "text-danger" })
@@ -120,7 +120,7 @@
         </div>
 
         <div class="form-group">
-            <label class = "control-label col-md-2">Hình ảnh</label>
+            <label class = "control-label col-md-2">Hình ảnh <span style="color: red">*</span></label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
                 @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
