@@ -179,7 +179,7 @@ else
                                             List<ChiTietGioHang> temp = (List<ChiTietGioHang>)Session["ShoppingCart"];
                                             var total = String.Format("{0:N0}", temp.Sum(x => x.SoLuong * x.SanPham.DonGia));
                                         }
-                                        <li class="cart-total">Tổng tiền:<span>@total đ</span></li>
+                                        <li class="cart-total">Tổng tiền:<span>@total vnđ</span></li>
                                     </ul>
                                     <a href="@Url.Action("CheckOut", "GioHangs")" class="proceed-btn">THANH TOÁN</a>
                                 </div>
