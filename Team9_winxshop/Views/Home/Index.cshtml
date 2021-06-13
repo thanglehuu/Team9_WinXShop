@@ -1,0 +1,323 @@
+﻿@model IEnumerable<Team9_winxshop.Models.SanPham>
+@using Team9_winxshop.Models
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="ht-left">
+                    <div class="mail-service">
+                        <i class=" fa fa-envelope"></i>
+                        winxshop@gmail.com
+                    </div>
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                        +65 11.188.888
+                    </div>
+                </div>
+                <div class="ht-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
+                        }
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href=".@Url.Action("Index", "Home")">
+                                <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        <form action="@Url.Action("Search", "SanPhams")" method="get">
+                            <div class="advanced-search" style="width: 500px;">
+                                <div class="input-group">
+                                    <input type="text" maxlength="30" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                                    <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 text-right col-md-3">
+                        <ul class="nav-right">
+                            <li class="cart-icon">
+                                <a href="@Url.Action("Index", "GioHangs")">
+                                    <i class="icon_bag_alt"></i>
+                                    <span>@((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString()) </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-item">
+            <div class="container">
+                <div class="nav-depart">
+                    <div class="depart-btn">
+                        <i class="ti-menu"></i>
+                        <span>All departments</span>
+                        <form action="@Url.Action("Search", "SanPhams")" method="get">
+                            <ul class="depart-hover">
+                                <li><button type="submit" name="Keyword" value="NU" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
+                                <li><button type="submit" name="Keyword" value="NAM" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                        <li><a href="@Url.Action("Index2", "SanPhams")">Sản phẩm</a></li>
+                        <li><a href="@Url.Action("About", "Home")">Về Winxshop</a></li>
+                        <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    <!-- Banner Section Begin -->
+    <div class="banner-section spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="@Url.Content("~/assets/img/banner-1.jpg")" alt="">
+                        <div class="inner-text">
+                            <form action="@Url.Action("Search", "SanPhams")" method="get">
+                                <button type="submit" name="Keyword" value="Nam" style="color: #252525; font-weight: 700; font-size: 20px;padding: 12px 28px; background: #ffffff; border-style: none">NAM</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="@Url.Content("~/assets/img/banner-2.jpg")" alt="">
+                        <div class="inner-text">
+                            <form action="@Url.Action("Search", "SanPhams")" method="get">
+                                <button type="submit" name="Keyword" value="Nữ" style="color: #252525; font-weight: 700; font-size: 20px;padding: 12px 28px; background: #ffffff; border-style: none">NỮ</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="single-banner">
+                        <img src="@Url.Content("~/assets/img/banner-3.jpg")" alt="">
+                        <div class="inner-text">
+                            <form action="@Url.Action("Search", "SanPhams")" method="get">
+                                <button type="submit" name="Keyword" value="PKIEN" style="color: #252525; font-weight: 700; font-size: 20px;padding: 12px 28px; background: #ffffff; border-style: none">PHỤ KIỆN</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Section End -->
+    <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="@Url.Content("~/assets/img/products/women-large.jpg")">
+                        <h2>Nữ</h2>
+                        <a href="@Url.Action("Index2", "SanPhams")">Các sản phẩm</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="product-slider owl-carousel">
+                        @foreach (var product in Model)
+                        {
+                            if (product.MaSP.ToString().Contains("NU"))
+                            {
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <a href="@Url.Action("Details", "SanPhams", new { id = product.MaSP })">
+                                            <img src="@Url.Content(product.HinhAnh)" alt="">
+                                        </a>
+
+                                        <ul>
+                                            <li class="quick-view" style="background-color: #e7ab3c;"><a href="@Url.Action("Details", "SanPhams",new { id = product.MaSP })" style="color: #ffffff">+ Quick View</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">@product.LoaiSanPham.TenLoaiSP</div>
+                                        <a href="#">
+                                            <h5>@product.TenSP</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            @product.DonGia.ToString("N0")@("đ")
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->
+    <!-- Man Banner Section Begin -->
+    <section class="man-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="product-slider owl-carousel">
+                        @foreach (var product in Model)
+                        {
+                            if (product.MaSP.ToString().Contains("NAM"))
+                            {
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <a href="@Url.Action("Details", "SanPhams", new { id = product.MaSP })">
+                                            <img src="@Url.Content(product.HinhAnh)" alt="">
+                                        </a>
+
+                                        <ul>
+                                            <li class="quick-view" style="background-color: #e7ab3c;"><a href="@Url.Action("Details", "SanPhams",new { id = product.MaSP })" style="color: #ffffff">+ Quick View</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="pi-text">
+                                        <div class="catagory-name">@product.LoaiSanPham.TenLoaiSP</div>
+                                        <a href="#">
+                                            <h5>@product.TenSP</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            @product.DonGia.ToString("N0")@("đ")
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1">
+                    <div class="product-large set-bg m-large" data-setbg="@Url.Content("~/assets/img/products/man-large.jpg")">
+                        <h2>Nam</h2>
+                        <a href="@Url.Action("Index2", "SanPhams")">Các sản phẩm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Man Banner Section End -->
+    <!-- Instagram Section Begin -->
+    <div class="instagram-photo">
+        <div class="insta-item set-bg" data-setbg="@Url.Content("~/assets/img/insta-1.jpg")">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="@Url.Content("~/assets/img/insta-2.jpg")">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="@Url.Content("~/assets/img/insta-3.jpg")">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="@Url.Content("~/assets/img/insta-4.jpg")">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="@Url.Content("~/assets/img/insta-5.jpg")">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+        <div class="insta-item set-bg" data-setbg="@Url.Content("~/assets/img/insta-6.jpg")">
+            <div class="inside-text">
+                <i class="ti-instagram"></i>
+                <h5><a href="#">colorlib_Collection</a></h5>
+            </div>
+        </div>
+    </div>
+    <!-- Instagram Section End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <a href=".@Url.Action("Index", "Home")">
+                                <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="footer-widget">
+                        <h5>Thông tin</h5>
+                        <ul>
+                            <li><a href="@Url.Action("About", "Home")">Về Winxshop</a></li>
+                            <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="newslatter-item">
+                        <h5>Join Our Newsletter Now</h5>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Enter Your Mail">
+                            <button type="button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                        <div class="payment-pic">
+                            <img src="@Url.Content("~/assets/img/payment-method.png")" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+</body>
