@@ -1,0 +1,151 @@
+﻿@using Team9_winxshop.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    winxshop@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href=".@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <form action="@Url.Action("Search", "SanPhams")" method="get">
+                        <div class="advanced-search" style="width: 500px;">
+                            <div class="input-group">
+                                <input type="text" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
+                                <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-3 text-right col-md-3">
+                    <ul class="nav-right">
+                        <li class="cart-icon">
+                            <a href="@Url.Action("Index", "GioHangs")">
+                                <i class="icon_bag_alt"></i>
+                                <span>@((Session["ShoppingCart"] as List<ChiTietGioHang>)?.Count.ToString()) </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <div class="container">
+            <div class="nav-depart">
+                <div class="depart-btn">
+                    <i class="ti-menu"></i>
+                    <span>All departments</span>
+                    <form action="@Url.Action("Search", "SanPhams")" method="get">
+                        <ul class="depart-hover">
+                            <li><button type="submit" name="Keyword" value="Nữ" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nữ</button></li>
+                            <li><button type="submit" name="Keyword" value="Nam" style="display: block; font-size: 16px; color: #e7ab3c; padding-left: 40px; padding-top: 16px; padding-right: 30px; border: none; background-color: #fff">Thời trang nam</button></li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <nav class="nav-menu mobile-menu">
+                <ul>
+                    <li class="active"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                    <li><a href="@Url.Action("Index2", "SanPhams")">Sản phẩm</a></li>
+                    <li><a href="@Url.Action("About", "Home")">Về Winxshop</a></li>
+                    <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </div>
+</header>
+
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a href="@Url.Action("Login", "Account")"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+                    <span>Đăng nhập</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="register-login-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="login-form">
+                    <h2>Đăng nhập</h2>
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="group-input">
+                            <label for="username">Email <span style="color: red">*</span></label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="group-input">
+                            <label for="pass">Mật khẩu <span style="color: red">*</span></label>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="group-input gi-check">
+                            <div class="gi-more">
+                                <label for="save-pass">
+                                    Lưu mật khẩu
+                                    <input type="checkbox" id="save-pass">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <a href="@Url.Action("ForgotPassword", "Account")" class="forget-pass">Quên mật khẩu</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="site-btn login-btn">Đăng nhập</button>
+                        <div class="switch-login">
+                            <a href="@Url.Action("Register", "Account")" class="or-login">Tạo tài khoản mới</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

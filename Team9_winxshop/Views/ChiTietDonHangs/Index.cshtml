@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Team9_winxshop.Models.ChiTietDonHang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    winxshop@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <form action="@Url.Action("Search", "DonHans")" method="get">
+                        <div class="advanced-search" style="width: 500px;">
+                            <div class="input-group">
+                                <input type="text" name="Keyword" placeholder="Nhập đơn hàng bạn muốn tìm kiếm">
+                                <button type="submit" style="right: -200px;"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<h2 style="padding: 12px">Chi tiết đơn hàng</h2>
+<a href="@Url.Action("Index", "DonHangs")" style="padding-left: 10px">Danh sách đơn hàng</a>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.MaDH
+                </td>
+                <td>
+                    <a href="@Url.Action("Search2", "SanPhams", new { keyword = item.MaSP })">@item.MaSP</a>
+                </td>
+                <td>
+                    @item.SoLuong
+                </td>
+                <td>
+                    @item.SanPham.DonGia.ToString("N0")@("đ")
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.MaCTDH })">
+                        Cập nhật sản phẩm
+                    </a>
+                    <br />
+                    <a href="@Url.Action("Delete", new { id = item.MaCTDH })">
+                        Xóa sản phẩm khỏi đơn hàng
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

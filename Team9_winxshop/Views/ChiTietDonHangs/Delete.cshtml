@@ -1,0 +1,93 @@
+﻿@model Team9_winxshop.Models.ChiTietDonHang
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    winxshop@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.jpg")" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<body>
+    <h3>Bạn có chắc muốn xóa sản phẩm này khỏi đơn hàng không ?</h3>
+    <div>
+        <h4 style="padding: 12px">Đơn hàng @Model.MaDH</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SoLuong)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DonHang.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DonHang.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SanPham.MaLoaiSP)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SanPham.MaLoaiSP)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" style="border-color: #e7ab3c;" /> |
+                @Html.ActionLink("Back to List", "Search", new { keyword = Model.MaDH })
+            </div>
+        }
+    </div>
+</body>
