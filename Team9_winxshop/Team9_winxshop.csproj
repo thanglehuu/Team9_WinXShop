@@ -420,10 +420,6 @@
     <Content Include="Views\ChiTietDonHangs\Details.cshtml" />
     <Content Include="Views\ChiTietDonHangs\Edit.cshtml" />
     <Content Include="Views\ChiTietDonHangs\Index.cshtml" />
-    <Content Include="Views\DonHangs\Delete.cshtml" />
-    <Content Include="Views\DonHangs\Details.cshtml" />
-    <Content Include="Views\DonHangs\Edit.cshtml" />
-    <Content Include="Views\DonHangs\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
