@@ -1,0 +1,141 @@
+﻿@model Team9_winxshop.Models.SanPham
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    winxshop@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +65 11.188.888
+                </div>
+            </div>
+            <div class="ht-right">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Log off</a>
+                    }
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="@Url.Action("Index", "Home")">
+                            <img src="@Url.Content("~/assets/img/logo.png")" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<h2>Thêm sản phẩm</h2>
+
+
+@using (Html.BeginForm("Create", "SanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label class = "control-label col-md-3">Mã sản phẩm <span style="color: red">*</span></label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaSP, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                    @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label class = "control-label col-md-4">Loại sản phẩm <span style="color: red">*</span></label>
+                <div class="col-md-10" style="max-width: 66%">
+                    @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "form-control", @required = "required" })
+                    @Html.ValidationMessageFor(model => model.MaLoaiSP, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class = "control-label col-md-2">Tên sản phẩm <span style="color: red">*</span></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class = "control-label col-md-2">Size <span style="color: red">*</span></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class = "control-label col-md-2">Số lượng <span style="color: red">*</span></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class = "control-label col-md-2">Đơn giá <span style="color: red">*</span></label>
+            <div class="col-md-10">
+                <div class="input-group">
+                    @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control", @required = "required", min = 0 } })
+                    <div class="input-group-append">
+                        <span class="input-group-text">vnđ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class = "control-label col-md-2">Màu <span style="color: red">*</span></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Mau, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.Mau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class = "control-label col-md-2">Hình ảnh <span style="color: red">*</span></label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-4">
+                <input type="submit" value="Create" class="btn btn-default" style="border-color: #e7ab3c;" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
