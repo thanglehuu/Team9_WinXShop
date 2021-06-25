@@ -38,7 +38,15 @@ namespace Team9_winxshop.Controllers
             string id = User.Identity.GetUserId();
             var model = db.AspNetUsers.FirstOrDefault(c => c.Id == id);
             string email = model.Email;
-            var user = db.KhachHangs.FirstOrDefault(c => c.Email == email);
+            KhachHang user = db.KhachHangs.FirstOrDefault(c => c.Email == email);
+            return View(user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Profile(KhachHang user)
+        {
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
             return View(user);
         }
     }
