@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Team9_winxshop.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Team9_winxshop.Controllers
 {
@@ -31,6 +32,14 @@ namespace Team9_winxshop.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult Profile()
+        {
+            string id = User.Identity.GetUserId();
+            var model = db.AspNetUsers.FirstOrDefault(c => c.Id == id);
+            string email = model.Email;
+            var user = db.KhachHangs.FirstOrDefault(c => c.Email == email);
+            return View(user);
         }
     }
 }

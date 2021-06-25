@@ -26,18 +26,26 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    @if (Request.IsAuthenticated)
-                    {
-                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    <div style="text-align:center;">
+                        @if (Request.IsAuthenticated)
                         {
-                            @Html.AntiForgeryToken()
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
+                            <a style="text-align:center;" href="@Url.Action("Profile", "Home")">Profile</a>
                         }
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
-                    }
+                    </div>
+                    <div>
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="login-panel">Đăng xuất</a>
+                            }
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login", "Account")" class="login-panel"><i class="fa fa-user"></i>Đăng nhập</a>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
