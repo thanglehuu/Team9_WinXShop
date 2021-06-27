@@ -17,13 +17,13 @@ namespace Team9_winxshop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TrangThaiDonHang()
         {
-            this.DonHangs = new HashSet<DonHang>();
+            this.DonHang = new HashSet<DonHang>();
         }
     
         public int MaTT { get; set; }
         public string TrangThai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHang> DonHangs { get; set; }
+        public virtual ICollection<DonHang> DonHang { get; set; }
     }
 }

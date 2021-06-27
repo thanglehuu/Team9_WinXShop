@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Team9_winxshop.Models.KhachHang>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Quản lí thông tin khách hàng</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Họ và tên
+        </th>
+        <th>
+            Giới tính
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Chi tiết
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioiTinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT_KH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgaySinh)
+        </td>
+        <td>
+            <a href="@Url.Action("Details","KhachHangs", new { id = item.id })">Xem chi tiết</a>
+        </td>
+    </tr>
+}
+
+</table>

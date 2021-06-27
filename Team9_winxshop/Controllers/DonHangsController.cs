@@ -17,13 +17,13 @@ namespace Team9_winxshop.Controllers
         // GET: DonHangs
         public ActionResult Index()
         {
-            var model = db.DonHangs.ToList();
+            var model = db.DonHang.ToList();
             return View(model);
         }
 
         public ActionResult Search(string keyword)
         {
-            var model = db.DonHangs.ToList();
+            var model = db.DonHang.ToList();
             model = model.Where(p => p.MaDH.ToString().Contains(keyword)
                                 || p.Email.ToLower().Contains(keyword.ToLower())).ToList();
             ViewBag.Keyword = keyword;
@@ -37,7 +37,7 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DonHang donHang = db.DonHangs.Find(id);
+            DonHang donHang = db.DonHang.Find(id);
             if (donHang == null)
             {
                 return HttpNotFound();
@@ -48,7 +48,7 @@ namespace Team9_winxshop.Controllers
         // GET: DonHangs/Create
         public ActionResult Create()
         {
-            ViewBag.MaTT = new SelectList(db.TrangThaiDonHangs, "MaTT", "TrangThai");
+            ViewBag.MaTT = new SelectList(db.TrangThaiDonHang, "MaTT", "TrangThai");
             return View();
         }
 
@@ -61,12 +61,12 @@ namespace Team9_winxshop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.DonHangs.Add(donHang);
+                db.DonHang.Add(donHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaTT = new SelectList(db.TrangThaiDonHangs, "MaTT", "TrangThai", donHang.MaTT);
+            ViewBag.MaTT = new SelectList(db.TrangThaiDonHang, "MaTT", "TrangThai", donHang.MaTT);
             return View(donHang);
         }
 
@@ -77,12 +77,12 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DonHang donHang = db.DonHangs.Find(id);
+            DonHang donHang = db.DonHang.Find(id);
             if (donHang == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaTT = new SelectList(db.TrangThaiDonHangs, "MaTT", "TrangThai", donHang.MaTT);
+            ViewBag.MaTT = new SelectList(db.TrangThaiDonHang, "MaTT", "TrangThai", donHang.MaTT);
             return View(donHang);
         }
 
@@ -99,7 +99,7 @@ namespace Team9_winxshop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaTT = new SelectList(db.TrangThaiDonHangs, "MaTT", "TrangThai", donHang.MaTT);
+            ViewBag.MaTT = new SelectList(db.TrangThaiDonHang, "MaTT", "TrangThai", donHang.MaTT);
             return View(donHang);
         }
 
@@ -110,7 +110,7 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DonHang donHang = db.DonHangs.Find(id);
+            DonHang donHang = db.DonHang.Find(id);
             if (donHang == null)
             {
                 return HttpNotFound();
@@ -123,8 +123,8 @@ namespace Team9_winxshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DonHang donHang = db.DonHangs.Find(id);
-            db.DonHangs.Remove(donHang);
+            DonHang donHang = db.DonHang.Find(id);
+            db.DonHang.Remove(donHang);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

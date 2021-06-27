@@ -61,7 +61,7 @@ namespace Team9_winxshop.Controllers
         [HttpPost]
         public ActionResult Create(string productId, int quantity)
         {
-            var product = db.SanPhams.Find(productId);
+            var product = db.SanPham.Find(productId);
             ShoppingCart.Add(new ChiTietGioHang
             {
                 SanPham = product,
@@ -95,7 +95,7 @@ namespace Team9_winxshop.Controllers
                 SDT = frc["khSodt"],
                 TongTien = Int32.Parse(frc["TTien"]),
             };
-            db.DonHangs.Add(donhang);
+            db.DonHang.Add(donhang);
             db.SaveChanges();
 
             foreach (var billdetail in ShoppingCart)
@@ -106,7 +106,7 @@ namespace Team9_winxshop.Controllers
                     MaSP = billdetail.SanPham.MaSP,
                     SoLuong = billdetail.SoLuong,
                 };
-                db.ChiTietDonHangs.Add(ctdh);
+                db.ChiTietDonHang.Add(ctdh);
                 db.SaveChanges();
             }
             ShoppingCart.Clear();

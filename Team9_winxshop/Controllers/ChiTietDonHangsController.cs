@@ -17,13 +17,13 @@ namespace Team9_winxshop.Controllers
         // GET: ChiTietDonHangs
         public ActionResult Index()
         {
-            var model = db.ChiTietDonHangs.ToList();
+            var model = db.ChiTietDonHang.ToList();
             return View(model);
         }
 
         public ActionResult Search(string keyword)
         {
-            var model = db.ChiTietDonHangs.ToList();
+            var model = db.ChiTietDonHang.ToList();
             model = model.Where(p => p.MaDH.ToString().Contains(keyword)).ToList();
             ViewBag.Keyword = keyword;
             return View("Index", model);
@@ -37,7 +37,7 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
+            ChiTietDonHang chiTietDonHang = db.ChiTietDonHang.Find(id);
             if (chiTietDonHang == null)
             {
                 return HttpNotFound();
@@ -56,8 +56,8 @@ namespace Team9_winxshop.Controllers
         // GET: ChiTietDonHangs/Create
         public ActionResult Create()
         {
-            ViewBag.MaDH = new SelectList(db.DonHangs, "MaDH", "Email");
-            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "MaLoaiSP");
+            ViewBag.MaDH = new SelectList(db.DonHang, "MaDH", "Email");
+            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "MaLoaiSP");
             return View();
         }
 
@@ -70,26 +70,26 @@ namespace Team9_winxshop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ChiTietDonHangs.Add(chiTietDonHang);
+                db.ChiTietDonHang.Add(chiTietDonHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaDH = new SelectList(db.DonHangs, "MaDH", "Email", chiTietDonHang.MaDH);
-            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "MaLoaiSP", chiTietDonHang.MaSP);
+            ViewBag.MaDH = new SelectList(db.DonHang, "MaDH", "Email", chiTietDonHang.MaDH);
+            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "MaLoaiSP", chiTietDonHang.MaSP);
             return View(chiTietDonHang);
         }
 
         // GET: ChiTietDonHangs/Edit/5
         public ActionResult Edit(int? id)
         {
-            ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
+            ChiTietDonHang chiTietDonHang = db.ChiTietDonHang.Find(id);
             if (chiTietDonHang == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaDH = new SelectList(db.DonHangs, "MaDH", "Email", chiTietDonHang.MaDH);
-            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "MaLoaiSP", chiTietDonHang.MaSP);
+            ViewBag.MaDH = new SelectList(db.DonHang, "MaDH", "Email", chiTietDonHang.MaDH);
+            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "MaLoaiSP", chiTietDonHang.MaSP);
             return View(chiTietDonHang);
         }
 
@@ -107,15 +107,15 @@ namespace Team9_winxshop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaDH = new SelectList(db.DonHangs, "MaDH", "Email", chiTietDonHang.MaDH);
-            ViewBag.TenSP = new SelectList(db.SanPhams, "MaSP", "TenSP", chiTietDonHang.SanPham.TenSP);
+            ViewBag.MaDH = new SelectList(db.DonHang, "MaDH", "Email", chiTietDonHang.MaDH);
+            ViewBag.TenSP = new SelectList(db.SanPham, "MaSP", "TenSP", chiTietDonHang.SanPham.TenSP);
             return View(chiTietDonHang);
         }
 
         // GET: ChiTietDonHangs/Delete/5
         public ActionResult Delete(int? id)
         {
-            var model = db.ChiTietDonHangs.Find(id);
+            var model = db.ChiTietDonHang.Find(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -128,8 +128,8 @@ namespace Team9_winxshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var chiTietDonHang = db.ChiTietDonHangs.Find(id);
-            db.ChiTietDonHangs.Remove(chiTietDonHang);
+            var chiTietDonHang = db.ChiTietDonHang.Find(id);
+            db.ChiTietDonHang.Remove(chiTietDonHang);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

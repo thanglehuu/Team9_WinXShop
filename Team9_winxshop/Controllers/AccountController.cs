@@ -165,7 +165,7 @@ namespace Team9_winxshop.Controllers
                         DiaChi = frc["khDiaChi"],
                         NgaySinh = Convert.ToDateTime(frc["khNgaySinh"]),
                     };
-                    db.KhachHangs.Add(khachhang);
+                    db.KhachHang.Add(khachhang);
                     db.SaveChanges();
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

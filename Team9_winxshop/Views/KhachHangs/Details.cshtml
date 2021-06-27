@@ -1,0 +1,63 @@
+﻿@model Team9_winxshop.Models.KhachHang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Thông tin chi tiết</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Họ và tên:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+        <hr />
+        <dt>
+            Ngày sinh:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+        <hr />
+        <dt>
+            Giới tính:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+        <hr />
+        <dt>
+            Số điện thoại:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT_KH)
+        </dd>
+        <hr />
+        <dt>
+            địa chỉ Email:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <hr />
+        <dt>
+            Địa chỉ:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+    </dl>
+</div>
+<hr />
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

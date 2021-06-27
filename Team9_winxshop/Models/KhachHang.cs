@@ -11,15 +11,14 @@ namespace Team9_winxshop.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class KhachHang
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public KhachHang()
         {
-            this.DonHangs = new HashSet<DonHang>();
-            this.GioHangs = new HashSet<GioHang>();
+            this.DonHang = new HashSet<DonHang>();
+            this.GioHang = new HashSet<GioHang>();
         }
     
         public string Email { get; set; }
@@ -28,10 +27,11 @@ namespace Team9_winxshop.Models
         public string SDT_KH { get; set; }
         public string DiaChi { get; set; }
         public System.DateTime NgaySinh { get; set; }
+        public int id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DonHang> DonHangs { get; set; }
+        public virtual ICollection<DonHang> DonHang { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GioHang> GioHangs { get; set; }
+        public virtual ICollection<GioHang> GioHang { get; set; }
     }
 }

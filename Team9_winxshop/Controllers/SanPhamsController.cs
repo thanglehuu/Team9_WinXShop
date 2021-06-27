@@ -19,7 +19,7 @@ namespace Team9_winxshop.Controllers
         // GET: SanPhams
         public ActionResult Index()
         {
-            var model = db.SanPhams.ToList();
+            var model = db.SanPham.ToList();
             return View(model);
         }
 
@@ -32,7 +32,7 @@ namespace Team9_winxshop.Controllers
             }
             else
             {
-                var model = db.SanPhams.ToList();
+                var model = db.SanPham.ToList();
                 model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())
                                     || p.Mau.ToLower().Contains(keyword.ToLower())
                                     || p.MaLoaiSP.ToLower().Contains(keyword.ToLower())
@@ -44,7 +44,7 @@ namespace Team9_winxshop.Controllers
 
         public ActionResult Search2(string keyword)
         {
-            var model = db.SanPhams.ToList();
+            var model = db.SanPham.ToList();
             model = model.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())
                                 || p.MaSP.ToLower().Contains(keyword.ToLower())
                                 || p.LoaiSanPham.TenLoaiSP.ToLower().Contains(keyword.ToLower())).ToList();
@@ -57,7 +57,7 @@ namespace Team9_winxshop.Controllers
         // for Customer
         public ActionResult Index2()
         {
-            var model = db.SanPhams.ToList();
+            var model = db.SanPham.ToList();
             return View(model);
         }
 
@@ -65,7 +65,7 @@ namespace Team9_winxshop.Controllers
         // GET: SanPhams/Details/5
         public ActionResult Details(string id)
         {
-            var model = db.SanPhams.Find(id);
+            var model = db.SanPham.Find(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -76,7 +76,7 @@ namespace Team9_winxshop.Controllers
         // GET: SanPhams/Create
         public ActionResult Create()
         {
-            ViewBag.MaLoaiSP = new SelectList(db.LoaiSanPhams, "MaLoaiSP", "TenLoaiSP");
+            ViewBag.MaLoaiSP = new SelectList(db.LoaiSanPham, "MaLoaiSP", "TenLoaiSP");
             return View();
         }
 
@@ -90,7 +90,7 @@ namespace Team9_winxshop.Controllers
             ValidateProduct(model);
             if (ModelState.IsValid)
             {
-                db.SanPhams.Add(model);
+                db.SanPham.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -112,12 +112,12 @@ namespace Team9_winxshop.Controllers
         // GET: SanPhams/Edit/5
         public ActionResult Edit(string id)
         {
-            SanPham sanPham = db.SanPhams.Find(id);
+            SanPham sanPham = db.SanPham.Find(id);
             if (sanPham == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaLoaiSP = new SelectList(db.LoaiSanPhams, "MaLoaiSP", "TenLoaiSP", sanPham.MaLoaiSP);
+            ViewBag.MaLoaiSP = new SelectList(db.LoaiSanPham, "MaLoaiSP", "TenLoaiSP", sanPham.MaLoaiSP);
             return View(sanPham);
         }
 
@@ -135,14 +135,14 @@ namespace Team9_winxshop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaLoaiSP = new SelectList(db.LoaiSanPhams, "MaLoaiSP", "TenLoaiSP", sanPham.MaLoaiSP);
+            ViewBag.MaLoaiSP = new SelectList(db.LoaiSanPham, "MaLoaiSP", "TenLoaiSP", sanPham.MaLoaiSP);
             return View(sanPham);
         }
 
         // GET: SanPhams/Delete/5
         public ActionResult Delete(string id)
         {
-            var model = db.SanPhams.Find(id);
+            var model = db.SanPham.Find(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -155,8 +155,8 @@ namespace Team9_winxshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            var model = db.SanPhams.Find(id);
-            db.SanPhams.Remove(model);
+            var model = db.SanPham.Find(id);
+            db.SanPham.Remove(model);
             db.SaveChanges();
 
             return RedirectToAction("Index");

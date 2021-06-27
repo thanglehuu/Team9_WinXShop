@@ -24,7 +24,7 @@ namespace Team9_winxshop.Tests.Controllers
             Assert.IsNotNull(model);
 
             var db = new CT25Team19Entities();
-            Assert.AreEqual(db.SanPhams.Count(), model.Count);
+            Assert.AreEqual(db.SanPham.Count(), model.Count);
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace Team9_winxshop.Tests.Controllers
             Assert.IsNotNull(model);
 
             var db = new CT25Team19Entities();
-            Assert.AreEqual(db.SanPhams.Count(), model.Count);
+            Assert.AreEqual(db.SanPham.Count(), model.Count);
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace Team9_winxshop.Tests.Controllers
             Assert.IsNotNull(result0);
 
             var db = new CT25Team19Entities();
-            var product = db.SanPhams.First();
+            var product = db.SanPham.First();
             var result = controller.Edit(product.MaSP) as ViewResult;
             Assert.IsNotNull(result);
 
@@ -120,7 +120,7 @@ namespace Team9_winxshop.Tests.Controllers
             Assert.IsNotNull(result0);
 
             var db = new CT25Team19Entities();
-            var product = db.SanPhams.First();
+            var product = db.SanPham.First();
             var result = controller.Edit(product.MaSP) as ViewResult;
             Assert.IsNotNull(result);
 
@@ -149,7 +149,7 @@ namespace Team9_winxshop.Tests.Controllers
             Assert.IsNotNull(result0);
 
             var db = new CT25Team19Entities();
-            var product = db.SanPhams.First();
+            var product = db.SanPham.First();
             var result = controller.Details(product.MaSP) as ViewResult;
             Assert.IsNotNull(result);
 
@@ -168,7 +168,7 @@ namespace Team9_winxshop.Tests.Controllers
         public void TestSearch()
         {
             var db = new CT25Team19Entities();
-            var products = db.SanPhams.ToList();
+            var products = db.SanPham.ToList();
             var keyword = products.First().TenSP.Split().First();
             products = products.Where(p => p.TenSP.ToLower().Contains(keyword.ToLower())).ToList();
 
@@ -188,7 +188,7 @@ namespace Team9_winxshop.Tests.Controllers
         public void TestSearch2()
         {
             var db = new CT25Team19Entities();
-            var products = db.SanPhams.ToList();
+            var products = db.SanPham.ToList();
             var keyword1 = products.First().TenSP.Split().First();
             var keyword2 = products.First().TenSP.Split().First();
             products = products.Where(p => p.TenSP.ToLower().Contains(keyword1.ToLower()) || p.MaSP.ToLower().Contains(keyword2.ToLower())).ToList();

@@ -17,13 +17,13 @@ namespace Team9_winxshop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public HinhThucThanhToan()
         {
-            this.ChiTietThanhToans = new HashSet<ChiTietThanhToan>();
+            this.ChiTietThanhToan = new HashSet<ChiTietThanhToan>();
         }
     
         public int MaHTTT { get; set; }
         public string HinhThucThanhToan1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietThanhToan> ChiTietThanhToans { get; set; }
+        public virtual ICollection<ChiTietThanhToan> ChiTietThanhToan { get; set; }
     }
 }
