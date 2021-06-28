@@ -17,8 +17,8 @@ namespace Team9_winxshop.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DonHang()
         {
-            this.ChiTietDonHang = new HashSet<ChiTietDonHang>();
-            this.ChiTietThanhToan = new HashSet<ChiTietThanhToan>();
+            this.ChiTietDonHangs = new HashSet<ChiTietDonHang>();
+            this.ChiTietThanhToans = new HashSet<ChiTietThanhToan>();
         }
     
         public int MaDH { get; set; }
@@ -27,11 +27,12 @@ namespace Team9_winxshop.Models
         public string DiaChiNguoiNhan { get; set; }
         public string SDT { get; set; }
         public int TongTien { get; set; }
+        public string idKH { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietDonHang> ChiTietDonHang { get; set; }
+        public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChiTietThanhToan> ChiTietThanhToan { get; set; }
+        public virtual ICollection<ChiTietThanhToan> ChiTietThanhToans { get; set; }
         public virtual KhachHang KhachHang { get; set; }
         public virtual TrangThaiDonHang TrangThaiDonHang { get; set; }
     }

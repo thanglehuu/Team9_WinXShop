@@ -18,7 +18,7 @@ namespace Team9_winxshop.Controllers
         // GET: KhachHangs
         public ActionResult Index()
         {
-            return View(db.KhachHang.ToList());
+            return View(db.KhachHangs.ToList());
         }
 
         // GET: KhachHangs/Details/5
@@ -28,7 +28,7 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KhachHang kh = db.KhachHang.FirstOrDefault(c=>c.id == id);
+            KhachHang kh = db.KhachHangs.FirstOrDefault(c=>c.id == id);
             if (kh == null)
             {
                 return HttpNotFound();

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Team9_winxshop.Models;
+using Microsoft.AspNet.Identity;
+
 
 namespace Team9_winxshop.Controllers
 {
@@ -17,16 +19,32 @@ namespace Team9_winxshop.Controllers
         // GET: ChiTietDonHangs
         public ActionResult Index()
         {
-            var model = db.ChiTietDonHang.ToList();
+            var model = db.ChiTietDonHangs.ToList();
             return View(model);
         }
 
         public ActionResult Search(string keyword)
         {
-            var model = db.ChiTietDonHang.ToList();
+            var model = db.ChiTietDonHangs.ToList();
             model = model.Where(p => p.MaDH.ToString().Contains(keyword)).ToList();
             ViewBag.Keyword = keyword;
             return View("Index", model);
+
+        }
+        [AllowAnonymous]
+        public ActionResult Index2(int id)
+        {
+
+            var chiTietDonHang = db.ChiTietDonHangs.Where(c => c.MaDH == id).ToList();
+            return View(chiTietDonHang);
+        }
+
+        public ActionResult Search2(string keyword)
+        {
+            var model = db.ChiTietDonHangs.ToList();
+            model = model.Where(p => p.MaDH.ToString().Contains(keyword)).ToList();
+            ViewBag.Keyword = keyword;
+            return View("Index2", model);
 
         }
 
@@ -37,7 +55,7 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ChiTietDonHang chiTietDonHang = db.ChiTietDonHang.Find(id);
+            ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
             if (chiTietDonHang == null)
             {
                 return HttpNotFound();
@@ -56,8 +74,8 @@ namespace Team9_winxshop.Controllers
         // GET: ChiTietDonHangs/Create
         public ActionResult Create()
         {
-            ViewBag.MaDH = new SelectList(db.DonHang, "MaDH", "Email");
-            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "MaLoaiSP");
+            ViewBag.MaDH = new SelectList(db.DonHangs, "MaDH", "Email");
+            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "MaLoaiSP");
             return View();
         }
 
@@ -70,26 +88,26 @@ namespace Team9_winxshop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ChiTietDonHang.Add(chiTietDonHang);
+                db.ChiTietDonHangs.Add(chiTietDonHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaDH = new SelectList(db.DonHang, "MaDH", "Email", chiTietDonHang.MaDH);
-            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "MaLoaiSP", chiTietDonHang.MaSP);
+            ViewBag.MaDH = new SelectList(db.DonHangs, "MaDH", "Email", chiTietDonHang.MaDH);
+            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "MaLoaiSP", chiTietDonHang.MaSP);
             return View(chiTietDonHang);
         }
 
         // GET: ChiTietDonHangs/Edit/5
         public ActionResult Edit(int? id)
         {
-            ChiTietDonHang chiTietDonHang = db.ChiTietDonHang.Find(id);
+            ChiTietDonHang chiTietDonHang = db.ChiTietDonHangs.Find(id);
             if (chiTietDonHang == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.MaDH = new SelectList(db.DonHang, "MaDH", "Email", chiTietDonHang.MaDH);
-            ViewBag.MaSP = new SelectList(db.SanPham, "MaSP", "MaLoaiSP", chiTietDonHang.MaSP);
+            ViewBag.MaDH = new SelectList(db.DonHangs, "MaDH", "Email", chiTietDonHang.MaDH);
+            ViewBag.MaSP = new SelectList(db.SanPhams, "MaSP", "MaLoaiSP", chiTietDonHang.MaSP);
             return View(chiTietDonHang);
         }
 
@@ -107,15 +125,15 @@ namespace Team9_winxshop.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaDH = new SelectList(db.DonHang, "MaDH", "Email", chiTietDonHang.MaDH);
-            ViewBag.TenSP = new SelectList(db.SanPham, "MaSP", "TenSP", chiTietDonHang.SanPham.TenSP);
+            ViewBag.MaDH = new SelectList(db.DonHangs, "MaDH", "Email", chiTietDonHang.MaDH);
+            ViewBag.TenSP = new SelectList(db.SanPhams, "MaSP", "TenSP", chiTietDonHang.SanPham.TenSP);
             return View(chiTietDonHang);
         }
 
         // GET: ChiTietDonHangs/Delete/5
         public ActionResult Delete(int? id)
         {
-            var model = db.ChiTietDonHang.Find(id);
+            var model = db.ChiTietDonHangs.Find(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -128,8 +146,8 @@ namespace Team9_winxshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var chiTietDonHang = db.ChiTietDonHang.Find(id);
-            db.ChiTietDonHang.Remove(chiTietDonHang);
+            var chiTietDonHang = db.ChiTietDonHangs.Find(id);
+            db.ChiTietDonHangs.Remove(chiTietDonHang);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -28,7 +28,7 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetRoles aspNetRole = db.AspNetRoles.Find(id);
+            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
             if (aspNetRole == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace Team9_winxshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(AspNetRoles aspNetRole)
+        public ActionResult Create(AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetRoles aspNetRole = db.AspNetRoles.Find(id);
+            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
             if (aspNetRole == null)
             {
                 return HttpNotFound();
@@ -80,7 +80,7 @@ namespace Team9_winxshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRoles aspNetRole)
+        public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRole aspNetRole)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace Team9_winxshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetRoles aspNetRole = db.AspNetRoles.Find(id);
+            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
             if (aspNetRole == null)
             {
                 return HttpNotFound();
@@ -111,7 +111,7 @@ namespace Team9_winxshop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            AspNetRoles aspNetRole = db.AspNetRoles.Find(id);
+            AspNetRole aspNetRole = db.AspNetRoles.Find(id);
             db.AspNetRoles.Remove(aspNetRole);
             db.SaveChanges();
             return RedirectToAction("Index");

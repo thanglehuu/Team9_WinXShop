@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
-                    <form action="@Url.Action("Search2", "SanPhams")" method="get">
+                    <form action="@Url.Action("Search3", "SanPhams")" method="get">
                         <div class="advanced-search" style="width: 500px;">
                             <div class="input-group">
                                 <input type="text" maxlength="30" name="Keyword" placeholder="Nhập sản phẩm bạn muốn tìm kiếm">
@@ -97,11 +97,8 @@
     </div>
 </header>
 
-<h2>Danh sách sản phẩm</h2>
+<h2>Chi tiết sản phẩm đơn hàng</h2>
 
-<p>
-    <a href="@Url.Action("Create")" style="">Thêm sản phẩm</a>
-</p>
 <table class="table">
     <tr>
         <th>
@@ -128,7 +125,6 @@
         <th>
             Loại sản phẩm
         </th>
-        <th></th>
     </tr>
 
     @foreach (var product in Model)
@@ -157,14 +153,6 @@
             </td>
             <td>
                 @product.LoaiSanPham.TenLoaiSP
-            </td>
-            <td>
-                <a href="@Url.Action("Edit", new { id = product.MaSP })">
-                    <i class="fa fa-edit"></i>
-                </a> |
-                <a href="@Url.Action("Delete", new { id = product.MaSP })">
-                    <i class="fa fa-trash"></i>
-                </a>
             </td>
         </tr>
     }

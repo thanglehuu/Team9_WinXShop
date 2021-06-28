@@ -16,7 +16,7 @@ namespace Team9_winxshop.Controllers
         private CT25Team19Entities db = new CT25Team19Entities();
         public ActionResult Index()
         {
-            var model = db.SanPham.ToList();
+            var model = db.SanPhams.ToList();
             return View(model);
         }
 
@@ -38,7 +38,7 @@ namespace Team9_winxshop.Controllers
             string id = User.Identity.GetUserId();
             var model = db.AspNetUsers.FirstOrDefault(c => c.Id == id);
             string email = model.Email;
-            KhachHang user = db.KhachHang.FirstOrDefault(c => c.Email == email);
+            KhachHang user = db.KhachHangs.FirstOrDefault(c => c.Email == email);
             return View(user);
         }
         [HttpPost]

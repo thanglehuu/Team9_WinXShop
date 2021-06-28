@@ -12,12 +12,12 @@ namespace Team9_winxshop.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sysdiagrams
+    public partial class AspNetUserLogin
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string UserId { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

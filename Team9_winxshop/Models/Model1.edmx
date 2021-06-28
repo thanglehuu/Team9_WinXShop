@@ -106,6 +106,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="DiaChiNguoiNhan" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="SDT" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="TongTien" Type="int" Nullable="false" />
+          <Property Name="idKH" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="GioHang">
           <Key>
@@ -444,7 +445,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="AspNetRoles">
+        <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -452,7 +453,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
         </EntityType>
-        <EntityType Name="AspNetUserClaims">
+        <EntityType Name="AspNetUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -460,9 +461,9 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
         </EntityType>
-        <EntityType Name="AspNetUserLogins">
+        <EntityType Name="AspNetUserLogin">
           <Key>
             <PropertyRef Name="LoginProvider" />
             <PropertyRef Name="ProviderKey" />
@@ -471,9 +472,9 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
         </EntityType>
-        <EntityType Name="AspNetUsers">
+        <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -525,8 +526,9 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="DiaChiNguoiNhan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SDT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TongTien" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ChiTietDonHang" Relationship="Self.FK_ChiTietDonHang_DonHang" FromRole="DonHang" ToRole="ChiTietDonHang" />
-          <NavigationProperty Name="ChiTietThanhToan" Relationship="Self.FK_ChiTietThanhToan_DonHang" FromRole="DonHang" ToRole="ChiTietThanhToan" />
+          <Property Name="idKH" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK_ChiTietDonHang_DonHang" FromRole="DonHang" ToRole="ChiTietDonHang" />
+          <NavigationProperty Name="ChiTietThanhToans" Relationship="Self.FK_ChiTietThanhToan_DonHang" FromRole="DonHang" ToRole="ChiTietThanhToan" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK_DonHang_KhachHang" FromRole="DonHang" ToRole="KhachHang" />
           <NavigationProperty Name="TrangThaiDonHang" Relationship="Self.FK_DonHang_TrangThaiDonHang" FromRole="DonHang" ToRole="TrangThaiDonHang" />
         </EntityType>
@@ -538,7 +540,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TongTien" Type="Int32" Nullable="false" />
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="ChiTietGioHang" Relationship="Self.FK_ChiTietGioHang_GioHang" FromRole="GioHang" ToRole="ChiTietGioHang" />
+          <NavigationProperty Name="ChiTietGioHangs" Relationship="Self.FK_ChiTietGioHang_GioHang" FromRole="GioHang" ToRole="ChiTietGioHang" />
           <NavigationProperty Name="KhachHang" Relationship="Self.FK_GioHang_KhachHang" FromRole="GioHang" ToRole="KhachHang" />
         </EntityType>
         <EntityType Name="HinhThucThanhToan">
@@ -547,7 +549,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           </Key>
           <Property Name="MaHTTT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HinhThucThanhToan1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="ChiTietThanhToan" Relationship="Self.FK_ChiTietThanhToan_HinhThucThanhToan" FromRole="HinhThucThanhToan" ToRole="ChiTietThanhToan" />
+          <NavigationProperty Name="ChiTietThanhToans" Relationship="Self.FK_ChiTietThanhToan_HinhThucThanhToan" FromRole="HinhThucThanhToan" ToRole="ChiTietThanhToan" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -560,8 +562,8 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="DonHang" Relationship="Self.FK_DonHang_KhachHang" FromRole="KhachHang" ToRole="DonHang" />
-          <NavigationProperty Name="GioHang" Relationship="Self.FK_GioHang_KhachHang" FromRole="KhachHang" ToRole="GioHang" />
+          <NavigationProperty Name="DonHangs" Relationship="Self.FK_DonHang_KhachHang" FromRole="KhachHang" ToRole="DonHang" />
+          <NavigationProperty Name="GioHangs" Relationship="Self.FK_GioHang_KhachHang" FromRole="KhachHang" ToRole="GioHang" />
         </EntityType>
         <EntityType Name="LoaiSanPham">
           <Key>
@@ -569,7 +571,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           </Key>
           <Property Name="MaLoaiSP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TenLoaiSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="SanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
+          <NavigationProperty Name="SanPhams" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="LoaiSanPham" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="SanPham">
           <Key>
@@ -583,11 +585,11 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <Property Name="DonGia" Type="Int32" Nullable="false" />
           <Property Name="Mau" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HinhAnh" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ChiTietDonHang" Relationship="Self.FK_ChiTietDonHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonHang" />
-          <NavigationProperty Name="ChiTietGioHang" Relationship="Self.FK_ChiTietGioHang_SanPham" FromRole="SanPham" ToRole="ChiTietGioHang" />
+          <NavigationProperty Name="ChiTietDonHangs" Relationship="Self.FK_ChiTietDonHang_SanPham" FromRole="SanPham" ToRole="ChiTietDonHang" />
+          <NavigationProperty Name="ChiTietGioHangs" Relationship="Self.FK_ChiTietGioHang_SanPham" FromRole="SanPham" ToRole="ChiTietGioHang" />
           <NavigationProperty Name="LoaiSanPham" Relationship="Self.FK_SanPham_LoaiSanPham" FromRole="SanPham" ToRole="LoaiSanPham" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -603,7 +605,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           </Key>
           <Property Name="MaTT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TrangThai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="DonHang" Relationship="Self.FK_DonHang_TrangThaiDonHang" FromRole="TrangThaiDonHang" ToRole="DonHang" />
+          <NavigationProperty Name="DonHangs" Relationship="Self.FK_DonHang_TrangThaiDonHang" FromRole="TrangThaiDonHang" ToRole="DonHang" />
         </EntityType>
         <EntityType Name="ChiTietThanhToan">
           <Key>
@@ -618,10 +620,10 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           <NavigationProperty Name="HinhThucThanhToan" Relationship="Self.FK_ChiTietThanhToan_HinhThucThanhToan" FromRole="ChiTietThanhToan" ToRole="HinhThucThanhToan" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -632,10 +634,10 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -766,26 +768,26 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
           </ReferentialConstraint>
         </Association>
         <Association Name="AspNetUserRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
         <EntityContainer Name="CT25Team19Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
-          <EntitySet Name="ChiTietDonHang" EntityType="Self.ChiTietDonHang" />
-          <EntitySet Name="ChiTietGioHang" EntityType="Self.ChiTietGioHang" />
-          <EntitySet Name="DonHang" EntityType="Self.DonHang" />
-          <EntitySet Name="GioHang" EntityType="Self.GioHang" />
-          <EntitySet Name="HinhThucThanhToan" EntityType="Self.HinhThucThanhToan" />
-          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" />
-          <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" />
-          <EntitySet Name="SanPham" EntityType="Self.SanPham" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="TrangThaiDonHang" EntityType="Self.TrangThaiDonHang" />
-          <EntitySet Name="ChiTietThanhToan" EntityType="Self.ChiTietThanhToan" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="ChiTietDonHangs" EntityType="Self.ChiTietDonHang" />
+          <EntitySet Name="ChiTietGioHangs" EntityType="Self.ChiTietGioHang" />
+          <EntitySet Name="DonHangs" EntityType="Self.DonHang" />
+          <EntitySet Name="GioHangs" EntityType="Self.GioHang" />
+          <EntitySet Name="HinhThucThanhToans" EntityType="Self.HinhThucThanhToan" />
+          <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+          <EntitySet Name="LoaiSanPhams" EntityType="Self.LoaiSanPham" />
+          <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TrangThaiDonHangs" EntityType="Self.TrangThaiDonHang" />
+          <EntitySet Name="ChiTietThanhToans" EntityType="Self.ChiTietThanhToan" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -795,44 +797,44 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietDonHang_DonHang" Association="Self.FK_ChiTietDonHang_DonHang">
-            <End Role="DonHang" EntitySet="DonHang" />
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietDonHang_SanPham" Association="Self.FK_ChiTietDonHang_SanPham">
-            <End Role="SanPham" EntitySet="SanPham" />
-            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="ChiTietDonHang" EntitySet="ChiTietDonHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietGioHang_GioHang" Association="Self.FK_ChiTietGioHang_GioHang">
-            <End Role="GioHang" EntitySet="GioHang" />
-            <End Role="ChiTietGioHang" EntitySet="ChiTietGioHang" />
+            <End Role="GioHang" EntitySet="GioHangs" />
+            <End Role="ChiTietGioHang" EntitySet="ChiTietGioHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietGioHang_SanPham" Association="Self.FK_ChiTietGioHang_SanPham">
-            <End Role="SanPham" EntitySet="SanPham" />
-            <End Role="ChiTietGioHang" EntitySet="ChiTietGioHang" />
+            <End Role="SanPham" EntitySet="SanPhams" />
+            <End Role="ChiTietGioHang" EntitySet="ChiTietGioHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietThanhToan_DonHang" Association="Self.FK_ChiTietThanhToan_DonHang">
-            <End Role="DonHang" EntitySet="DonHang" />
-            <End Role="ChiTietThanhToan" EntitySet="ChiTietThanhToan" />
+            <End Role="DonHang" EntitySet="DonHangs" />
+            <End Role="ChiTietThanhToan" EntitySet="ChiTietThanhToans" />
           </AssociationSet>
           <AssociationSet Name="FK_DonHang_KhachHang" Association="Self.FK_DonHang_KhachHang">
-            <End Role="KhachHang" EntitySet="KhachHang" />
-            <End Role="DonHang" EntitySet="DonHang" />
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="DonHang" EntitySet="DonHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_DonHang_TrangThaiDonHang" Association="Self.FK_DonHang_TrangThaiDonHang">
-            <End Role="TrangThaiDonHang" EntitySet="TrangThaiDonHang" />
-            <End Role="DonHang" EntitySet="DonHang" />
+            <End Role="TrangThaiDonHang" EntitySet="TrangThaiDonHangs" />
+            <End Role="DonHang" EntitySet="DonHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_GioHang_KhachHang" Association="Self.FK_GioHang_KhachHang">
-            <End Role="KhachHang" EntitySet="KhachHang" />
-            <End Role="GioHang" EntitySet="GioHang" />
+            <End Role="KhachHang" EntitySet="KhachHangs" />
+            <End Role="GioHang" EntitySet="GioHangs" />
           </AssociationSet>
           <AssociationSet Name="FK_ChiTietThanhToan_HinhThucThanhToan" Association="Self.FK_ChiTietThanhToan_HinhThucThanhToan">
-            <End Role="HinhThucThanhToan" EntitySet="HinhThucThanhToan" />
-            <End Role="ChiTietThanhToan" EntitySet="ChiTietThanhToan" />
+            <End Role="HinhThucThanhToan" EntitySet="HinhThucThanhToans" />
+            <End Role="ChiTietThanhToan" EntitySet="ChiTietThanhToans" />
           </AssociationSet>
           <AssociationSet Name="FK_SanPham_LoaiSanPham" Association="Self.FK_SanPham_LoaiSanPham">
-            <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
-            <End Role="SanPham" EntitySet="SanPham" />
+            <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
+            <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -856,7 +858,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="CT25Team19Model.AspNetRoles">
+            <EntityTypeMapping TypeName="CT25Team19Model.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -864,7 +866,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="CT25Team19Model.AspNetUserClaims">
+            <EntityTypeMapping TypeName="CT25Team19Model.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -874,7 +876,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="CT25Team19Model.AspNetUserLogins">
+            <EntityTypeMapping TypeName="CT25Team19Model.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -883,7 +885,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="CT25Team19Model.AspNetUsers">
+            <EntityTypeMapping TypeName="CT25Team19Model.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -900,7 +902,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ChiTietDonHang">
+          <EntitySetMapping Name="ChiTietDonHangs">
             <EntityTypeMapping TypeName="CT25Team19Model.ChiTietDonHang">
               <MappingFragment StoreEntitySet="ChiTietDonHang">
                 <ScalarProperty Name="MaCTDH" ColumnName="MaCTDH" />
@@ -910,7 +912,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ChiTietGioHang">
+          <EntitySetMapping Name="ChiTietGioHangs">
             <EntityTypeMapping TypeName="CT25Team19Model.ChiTietGioHang">
               <MappingFragment StoreEntitySet="ChiTietGioHang">
                 <ScalarProperty Name="MaCTGH" ColumnName="MaCTGH" />
@@ -920,7 +922,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DonHang">
+          <EntitySetMapping Name="DonHangs">
             <EntityTypeMapping TypeName="CT25Team19Model.DonHang">
               <MappingFragment StoreEntitySet="DonHang">
                 <ScalarProperty Name="MaDH" ColumnName="MaDH" />
@@ -929,10 +931,11 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
                 <ScalarProperty Name="DiaChiNguoiNhan" ColumnName="DiaChiNguoiNhan" />
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+                <ScalarProperty Name="idKH" ColumnName="idKH" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GioHang">
+          <EntitySetMapping Name="GioHangs">
             <EntityTypeMapping TypeName="CT25Team19Model.GioHang">
               <MappingFragment StoreEntitySet="GioHang">
                 <ScalarProperty Name="MaGH" ColumnName="MaGH" />
@@ -942,7 +945,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HinhThucThanhToan">
+          <EntitySetMapping Name="HinhThucThanhToans">
             <EntityTypeMapping TypeName="CT25Team19Model.HinhThucThanhToan">
               <MappingFragment StoreEntitySet="HinhThucThanhToan">
                 <ScalarProperty Name="MaHTTT" ColumnName="MaHTTT" />
@@ -950,7 +953,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="KhachHang">
+          <EntitySetMapping Name="KhachHangs">
             <EntityTypeMapping TypeName="CT25Team19Model.KhachHang">
               <MappingFragment StoreEntitySet="KhachHang">
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -963,7 +966,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="LoaiSanPham">
+          <EntitySetMapping Name="LoaiSanPhams">
             <EntityTypeMapping TypeName="CT25Team19Model.LoaiSanPham">
               <MappingFragment StoreEntitySet="LoaiSanPham">
                 <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
@@ -971,7 +974,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SanPham">
+          <EntitySetMapping Name="SanPhams">
             <EntityTypeMapping TypeName="CT25Team19Model.SanPham">
               <MappingFragment StoreEntitySet="SanPham">
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
@@ -986,7 +989,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CT25Team19Model.sysdiagrams">
+            <EntityTypeMapping TypeName="CT25Team19Model.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -996,7 +999,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TrangThaiDonHang">
+          <EntitySetMapping Name="TrangThaiDonHangs">
             <EntityTypeMapping TypeName="CT25Team19Model.TrangThaiDonHang">
               <MappingFragment StoreEntitySet="TrangThaiDonHang">
                 <ScalarProperty Name="MaTT" ColumnName="MaTT" />
@@ -1004,7 +1007,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ChiTietThanhToan">
+          <EntitySetMapping Name="ChiTietThanhToans">
             <EntityTypeMapping TypeName="CT25Team19Model.ChiTietThanhToan">
               <MappingFragment StoreEntitySet="ChiTietThanhToan">
                 <ScalarProperty Name="MaDH" ColumnName="MaDH" />
@@ -1035,7 +1038,7 @@ warning 6002: The table/view 'CT25Team19.dbo.ChiTietThanhToan' does not have a p
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
